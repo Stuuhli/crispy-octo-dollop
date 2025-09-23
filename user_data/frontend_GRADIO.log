@@ -1,0 +1,74 @@
+INFO [_client.py:1025]:2025-09-22 12:19:46,921:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 12:19:46,944:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 12:19:48,452:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 12:19:48,510:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:167]:2025-09-22 12:25:37,783:Logging in for: admin_compliance
+INFO [frontend.py:200]:2025-09-22 12:25:37,797:Unsuccessful authentication for admin_compliance
+INFO [frontend.py:167]:2025-09-22 12:35:36,637:Logging in for: admin_compliance
+ERROR [frontend.py:203]:2025-09-22 12:35:37,030:Got an error during authentication: 500 Server Error: Internal Server Error for url: http://localhost:8000//conversation/start
+INFO [frontend.py:167]:2025-09-22 12:43:47,308:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 12:43:47,700:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 12:43:47,704:Current object created for admin_compliance has existing convos: [['New Chat', '745c752c-2abd-424e-9faa-e489bc21853f']]
+INFO [frontend.py:197]:2025-09-22 12:43:47,704:Successful authentication for admin_compliance, session id: 745c752c-2abd-424e-9faa-e489bc21853f
+INFO [frontend.py:42]:2025-09-22 12:43:48,108:Session id: 745c752c-2abd-424e-9faa-e489bc21853f initialised for user: admin_compliance
+INFO [frontend.py:53]:2025-09-22 12:44:11,828:User admin_compliance ingesting file: KISTERS_IS_Klassifikation_ZutrittZugangZugriff.pdf to collection: compliance_center
+INFO [frontend.py:53]:2025-09-22 12:49:51,131:User admin_compliance ingesting file: KISTERS_IS_Guideline.pdf to collection: compliance_center
+INFO [frontend.py:53]:2025-09-22 12:51:48,219:User admin_compliance ingesting file: KISTERS_IS_Leitlinie.pdf to collection: compliance_center
+INFO [frontend.py:53]:2025-09-22 12:52:58,687:User admin_compliance ingesting file: KISTERS_IS_PasswortRichtlinie.pdf to collection: compliance_center
+INFO [frontend.py:53]:2025-09-22 12:53:53,355:User admin_compliance ingesting file: KISTERS_IS_Policy.pdf to collection: compliance_center
+INFO [frontend.py:53]:2025-09-22 12:54:38,750:User admin_compliance ingesting file: KISTERS_IS_Richtlinie.pdf to collection: compliance_center
+ERROR [frontend.py:92]:2025-09-22 12:57:25,542:Got an error during getting bot response for session id: 745c752c-2abd-424e-9faa-e489bc21853f: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/745c752c-2abd-424e-9faa-e489bc21853f$admin_compliance/message
+ERROR [frontend.py:92]:2025-09-22 12:58:55,136:Got an error during getting bot response for session id: 745c752c-2abd-424e-9faa-e489bc21853f: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/745c752c-2abd-424e-9faa-e489bc21853f$admin_compliance/message
+INFO [frontend.py:223]:2025-09-22 13:06:52,951:User admin_compliance logged out
+INFO [frontend.py:167]:2025-09-22 13:07:22,727:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 13:07:23,222:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 13:07:23,228:Current object created for admin_compliance has existing convos: [['New Chat', 'aa5e1e3a-6ad7-4f0e-9b36-51fa28838166']]
+INFO [frontend.py:197]:2025-09-22 13:07:23,228:Successful authentication for admin_compliance, session id: aa5e1e3a-6ad7-4f0e-9b36-51fa28838166
+INFO [frontend.py:42]:2025-09-22 13:07:23,426:Session id: aa5e1e3a-6ad7-4f0e-9b36-51fa28838166 initialised for user: admin_compliance
+ERROR [frontend.py:92]:2025-09-22 13:12:53,186:Got an error during getting bot response for session id: aa5e1e3a-6ad7-4f0e-9b36-51fa28838166: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/aa5e1e3a-6ad7-4f0e-9b36-51fa28838166$admin_compliance/message
+ERROR [frontend.py:92]:2025-09-22 13:55:22,200:Got an error during getting bot response for session id: aa5e1e3a-6ad7-4f0e-9b36-51fa28838166: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/aa5e1e3a-6ad7-4f0e-9b36-51fa28838166$admin_compliance/message
+INFO [_client.py:1025]:2025-09-22 14:04:11,815:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:04:11,839:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:04:12,672:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:04:12,699:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:13:33,917:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:13:33,942:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:13:34,736:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:13:34,748:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:167]:2025-09-22 14:14:33,286:Logging in for: compliance_admin
+INFO [frontend.py:200]:2025-09-22 14:14:33,316:Unsuccessful authentication for compliance_admin
+INFO [frontend.py:167]:2025-09-22 14:14:52,429:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 14:14:52,954:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 14:14:52,960:Current object created for admin_compliance has existing convos: [['New Chat', '3b47e32c-002e-402a-a10d-81aed46c79c7']]
+INFO [frontend.py:197]:2025-09-22 14:14:52,960:Successful authentication for admin_compliance, session id: 3b47e32c-002e-402a-a10d-81aed46c79c7
+INFO [frontend.py:42]:2025-09-22 14:14:53,542:Session id: 3b47e32c-002e-402a-a10d-81aed46c79c7 initialised for user: admin_compliance
+INFO [frontend.py:89]:2025-09-22 14:17:09,656:Bot response successful for user: admin_compliance for session id: 3b47e32c-002e-402a-a10d-81aed46c79c7
+ERROR [frontend.py:92]:2025-09-22 14:21:36,689:Got an error during getting bot response for session id: 3b47e32c-002e-402a-a10d-81aed46c79c7: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/3b47e32c-002e-402a-a10d-81aed46c79c7$admin_compliance/message
+ERROR [frontend.py:92]:2025-09-22 14:26:30,190:Got an error during getting bot response for session id: 3b47e32c-002e-402a-a10d-81aed46c79c7: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/3b47e32c-002e-402a-a10d-81aed46c79c7$admin_compliance/message
+ERROR [frontend.py:92]:2025-09-22 14:31:27,753:Got an error during getting bot response for session id: 3b47e32c-002e-402a-a10d-81aed46c79c7: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/3b47e32c-002e-402a-a10d-81aed46c79c7$admin_compliance/message
+INFO [frontend.py:223]:2025-09-22 14:39:56,516:User admin_compliance logged out
+INFO [frontend.py:167]:2025-09-22 14:41:02,455:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 14:41:03,010:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 14:41:03,019:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['New Chat', '692c253d-aee7-4c68-8e19-bcc515e4b06c']]
+INFO [frontend.py:197]:2025-09-22 14:41:03,019:Successful authentication for admin_compliance, session id: 692c253d-aee7-4c68-8e19-bcc515e4b06c
+INFO [frontend.py:42]:2025-09-22 14:41:03,196:Session id: 692c253d-aee7-4c68-8e19-bcc515e4b06c initialised for user: admin_compliance
+INFO [frontend.py:89]:2025-09-22 14:45:03,880:Bot response successful for user: admin_compliance for session id: 692c253d-aee7-4c68-8e19-bcc515e4b06c
+INFO [_client.py:1025]:2025-09-22 14:59:34,113:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:59:34,132:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:59:34,976:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-22 14:59:35,021:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:167]:2025-09-22 15:02:34,267:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 15:02:36,208:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 15:02:36,216:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['New Chat', 'f7b13798-d0f3-4284-854a-48648c65f505']]
+INFO [frontend.py:197]:2025-09-22 15:02:36,216:Successful authentication for admin_compliance, session id: f7b13798-d0f3-4284-854a-48648c65f505
+INFO [frontend.py:42]:2025-09-22 15:02:36,605:Session id: f7b13798-d0f3-4284-854a-48648c65f505 initialised for user: admin_compliance
+ERROR [frontend.py:92]:2025-09-22 15:07:07,146:Got an error during getting bot response for session id: f7b13798-d0f3-4284-854a-48648c65f505: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/f7b13798-d0f3-4284-854a-48648c65f505$admin_compliance/message
+INFO [frontend.py:223]:2025-09-22 15:07:22,351:User admin_compliance logged out
+INFO [frontend.py:167]:2025-09-22 15:08:18,105:Logging in for: admin_compliance
+INFO [frontend.py:185]:2025-09-22 15:08:18,355:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:196]:2025-09-22 15:08:18,364:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['New Chat', 'e060705d-d5b0-4a85-908f-068e5c36d979']]
+INFO [frontend.py:197]:2025-09-22 15:08:18,364:Successful authentication for admin_compliance, session id: e060705d-d5b0-4a85-908f-068e5c36d979
+INFO [frontend.py:42]:2025-09-22 15:08:18,514:Session id: e060705d-d5b0-4a85-908f-068e5c36d979 initialised for user: admin_compliance
+INFO [frontend.py:89]:2025-09-22 15:12:35,327:Bot response successful for user: admin_compliance for session id: e060705d-d5b0-4a85-908f-068e5c36d979
+ERROR [frontend.py:92]:2025-09-22 15:20:28,783:Got an error during getting bot response for session id: e060705d-d5b0-4a85-908f-068e5c36d979: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/e060705d-d5b0-4a85-908f-068e5c36d979$admin_compliance/message
+INFO [utils_helper_func.py:24]:2025-09-22 15:20:37,137:{'conv_id': 'e060705d-d5b0-4a85-908f-068e5c36d979', 'username': 'admin_compliance', 'LLM_response': 'Hallo! Wie kann ich Ihnen heute behilflich sein? Ich bin Kisters AI-Assistent und stehe Ihnen für Fragen zu den Richtlinien und Informationen von Kister zur Verfügung. [INFO]', 'feedback': 'Positive', 'feedback_comment': 'N/A'}

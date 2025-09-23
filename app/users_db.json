@@ -1,0 +1,9 @@
+{
+    "admin_compliance": {
+        "username": "admin_compliance",
+        "full_name": "admin_compliance",
+        "hashed_password": "$2b$12$XUnWdqW0MCWTOxbFK1vY.uOeUiSl.AVPVbxc4El3cpHM58O.mkdwy",
+        "disabled": false,
+        "admin": true
+    }
+}

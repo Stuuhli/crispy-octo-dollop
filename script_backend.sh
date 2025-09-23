@@ -40,7 +40,7 @@ start() {
     mkdir -p ./user_data/doc_store
     # Start FastAPI backend
     echo "Starting FastAPI backend..."
-    export MODEL="llama3.2:1b-instruct-q2_K"
+    export MODEL="gemma3n:e4b"
     export BACKEND="ollama"
     apptainer instance start \
     --bind ./app:/app \

@@ -71,14 +71,14 @@ start() {
     
     # Load generative model
     echo "Loading generative model..."
-    start_process apptainer exec instance://ollama ollama pull llama3.2:1b-instruct-q2_K
+    start_process apptainer exec instance://ollama ollama pull gemma3n:e4b
     sleep 5
 
     # Load embedding models
     echo "Loading embedding model..."
     #start_process apptainer exec instance://ollama ollama pull all-minilm:22m
-    start_process apptainer exec instance://ollama bash -c 'echo -e "FROM all-minilm:22m\nPARAMETER num_ctx 512" > /tmp/Modelfile_allmini'
-    apptainer exec instance://ollama ollama create allmini-22m-512 -f /tmp/Modelfile_allmini
+    start_process apptainer exec instance://ollama bash -c 'echo -e "FROM embeddinggemma\nPARAMETER num_ctx 2048" > /tmp/Modelfile_embeddinggemma'
+    apptainer exec instance://ollama ollama pull embeddinggemma
     sleep 3
     #start_process apptainer exec instance://ollama bash -c 'echo -e "FROM snowflake-arctic-embed2\nPARAMETER num_ctx 8192" > /tmp/Modelfile_snowflake'
     #apptainer exec instance://ollama ollama create snowflake-arctic-embed2 -f /tmp/Modelfile_snowflake

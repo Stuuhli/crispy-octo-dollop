@@ -26,15 +26,15 @@ API_CONV_SEND = os.environ.get("API_CONV_SEND") # send message to bot
 API_GET_HISTORY = os.environ.get("API_GET_HISTORY") # get history of a conversation id
 API_CREATE_USER = os.environ.get("API_CREATE_USER") # create new user
 API_VALIDATE_USER = os.environ.get("API_VALIDATE_USER") # validate auth
-#API_FILE_INGEST = os.environ.get("API_FILE_INGEST") # ingest file to vector db
+API_FILE_INGEST = os.environ.get("API_FILE_INGEST") # ingest file to vector db
 API_GETCOLLECTION= os.environ.get("API_GETCOLLECTION") # internal API to get collection contents as excel
-#API_CHANGECOLLECTION= os.environ.get("API_CHANGECOLLECTION") # API to change collections you are talking to
+API_CHANGECOLLECTION= os.environ.get("API_CHANGECOLLECTION") # API to change collections you are talking to
 API_GET_EXISTING_CONV= os.environ.get("API_GET_EXISTING_CONV") # API to get existing conversation ids
 API_LOGOUT= os.environ.get("API_LOGOUT") # API to logout (delete session var from redis)
 API_GET_AVAILABLE_DOC_NAMES= os.environ.get("API_GET_AVAILABLE_DOC_NAMES")
 API_CREATE_EMPTY_COLLECTION= os.environ.get("API_CREATE_EMPTY_COLLECTION")
 API_LOG_FEEDBACK= os.environ.get("API_LOG_FEEDBACK")
-# API_GET_MEMORY= os.environ.get("API_GET_MEMORY")
+API_GET_MEMORY= os.environ.get("API_GET_MEMORY")
 
 # Ingestion configs
 MILVUS_URI= os.environ.get("MILVUS_URI")
@@ -60,9 +60,17 @@ elif BACKEND=="vllm":
 
 MODEL_EMBED_SMALL= os.environ.get("MODEL_EMBED_SMALL")
 MODEL_EMBED_BIG= os.environ.get("MODEL_EMBED_BIG")
+EMBEDDING_GEMMA_DIM = int(os.environ.get("EMBEDDING_GEMMA_DIM", "768"))
+EMBEDDING_GEMMA_BATCH = int(os.environ.get("EMBEDDING_GEMMA_BATCH", "8"))
+EMBEDDING_GEMMA_TOPK = int(os.environ.get("EMBEDDING_GEMMA_TOPK", "3"))
 MODEL_RERANK= os.getenv("MODEL_RERANK")
 
-if MODEL_EMBED_BIG not in ["snowflake-arctic-embed2", "nomic-embed-text", "qwen3_embed"]:
+valid_embedding_models = {"snowflake-arctic-embed2", "nomic-embed-text", "qwen3_embed", "embeddinggemma"}
+
+if MODEL_EMBED_BIG not in valid_embedding_models:
+  raise HTTPException(status_code=404, detail="Incorrect embedding model config")
+
+if MODEL_EMBED_SMALL and MODEL_EMBED_SMALL not in valid_embedding_models:
   raise HTTPException(status_code=404, detail="Incorrect embedding model config")
 
 # columns in the llm response log excel file
@@ -97,9 +105,11 @@ mod_chunk = {"support_small": 512,
           "compliance_center":4096} 
 
 # EMBEDDING MODEL - CHUNKS PER BATCH CONFIG
-batch_mod= {MODEL_EMBED_SMALL:64,
+batch_mod= {
+            MODEL_EMBED_SMALL:64,
             "all-minilm:22m":64,
-            MODEL_EMBED_BIG:8
+            MODEL_EMBED_BIG:8,
+            "embeddinggemma": EMBEDDING_GEMMA_BATCH
             }
 
 # EMBEDDING MODEL - DIMENSION OF EMBEDDING CONFIG
@@ -107,13 +117,15 @@ dim_mod= {"allmini-22m-512":384,
             "all-minilm:22m":384,
             "nomic-embed-text":768,
             "snowflake-arctic-embed2":1024,
-            "qwen3_embed": 1024
+            "qwen3_embed": 1024,
+            "embeddinggemma": EMBEDDING_GEMMA_DIM
             }
 
 # EMBEDDING MODELS - NUMBER OF RERANKED CHUNKS CONFIG
 topk_mod= {MODEL_EMBED_SMALL:5,
            "all-minilm:22m":5,
-           MODEL_EMBED_BIG:3
+           MODEL_EMBED_BIG:3,
+           "embeddinggemma": EMBEDDING_GEMMA_TOPK
           }
 # EMBEDDING MODEL - PORT NUMBER IN VLLM CONFIG
 port_vllm_col= {
@@ -123,11 +135,12 @@ port_vllm_col= {
 
 # EMBEDDING MODEL - CONTEXT LENGTH PER MODEL CONFIG
 model_len_model= {
- "allmini-22m-512":512,
+  "allmini-22m-512":512,
   "all-minilm:22m":256,
   "nomic-embed-text":8192,
   "snowflake-arctic-embed2":8192, 
-  "qwen3_embed":8192
+  "qwen3_embed":8192,
+  "embeddinggemma":2048
 }
 
 

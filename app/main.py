@@ -50,7 +50,7 @@ async def lifespan(app: FastAPI):
     # decode responses is False as manual decoding is necessary for some of the redis "get" commands
     app.state.redis = Redis(host='localhost', port=6379, db=0, decode_responses=False)
     if BACKEND=="ollama":
-        Settings.llm = Ollama(model=MODEL, request_timeout=150.0, temperature=0)
+        Settings.llm = Ollama(model=MODEL, request_timeout=300.0, temperature=0)
     elif BACKEND=="vllm":
         Settings.llm = OpenAILike(model=MODEL, api_base=VLLM_GEN_URL, api_key="random", temperature=0.1, timeout=180.0, context_window=GEN_CONTEXT_WINDOW, is_chat_model=True)
     user_history_db= Docling_parser.get_store(path=USER_HISTORY)
