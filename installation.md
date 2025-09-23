@@ -9,7 +9,7 @@
 
 (falls python3-pip nicht gefunden wird, nimm sudo apt install python3-pip --reinstall)
 
-3. Venv erstellen + aktivieren (achte auf activate, nicht active):
+3. Venv erstellen + aktivieren:
 
 `python3 -m venv .venv` <br>
 `source .venv/bin/activate`
@@ -19,7 +19,6 @@
 `pip install -r requirements.txt` <br>
 `pip install -r requirements_frontend.txt`
 
-Danach kannst du mit den Konfigurations- und Startschritten weitermachen.
 
 
 

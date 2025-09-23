@@ -2,11 +2,17 @@ from app.Ingestion_workflows.docling_parse_process import Docling_parser
 from app.Ingestion_workflows.milvus_ingest import ingest2milvus
 from app.RAG_workflows.citation_engine import CitationQueryEngineWorkflow
 from app.auth import password_verify
-from app.config import (USER_DB_PATH, MILVUS_URI, TOKEN,BACKEND_FASTAPI_LOG, RETRIEVAL_LOG_PATH, USER_HISTORY, USER_COLLECTION_MAPPING, CHAT_STORE_PATH,
+from app.config import (USER_DB_PATH, USER_COLLECTION_MAPPING, MILVUS_URI, TOKEN,BACKEND_FASTAPI_LOG, RETRIEVAL_LOG_PATH, USER_HISTORY, CHAT_STORE_PATH,
                          MILVUS_ROOT_ROLE, BACKEND, VLLM_GEN_URL, GEN_CONTEXT_WINDOW, FILES_DB, FASTAPI_URL, col_mod, topk_mod, dim_mod, collection_type,
                            systemprompt, citation_header)
 from app.utils.utils_LLM import milvus_hybrid_retrieve, cite, log_retrievals 
-from app.utils.utils_auth import user_auth_format, write_json, load_json, user_auth_validate
+from app.utils.utils_auth import (
+    user_auth_format,
+    write_json,
+    load_json,
+    user_auth_validate,
+    create_jwt_token,
+)
 from app.utils.utils_backend import deserialize, cleanup_expired_sessions, check_chat_history_db, check_empty_chats
 from app.utils.utils_ingestion import FileUploadValidator, milvus_db_as_excel, ingest, get_doc_in_collection, check_admin
 from app.utils.utils_logging import initialize_logging, logger
@@ -115,14 +121,20 @@ async def validate_user(request: user_auth_validate):
     """
     logger.info(" Validating: %s", request.username)
     user_db= load_json(filename=request.USER_DB_PATH)
+    user_coll_mapping = load_json(filename=USER_COLLECTION_MAPPING)
     if request.username not in user_db:
             logger.info("Invalid username or password ")
-            return "Invalid username or password", False
+            raise HTTPException(status_code=401, detail="Invalid username or password")
     if not password_verify(password=request.password, hashed= user_db[request.username]["hashed_password"]):
             logger.info("Invalid username or password ")
-            return "Invalid username or password", False
+            raise HTTPException(status_code=401, detail="Invalid username or password")
     logger.info(" Validation successful for %s", request.username)
-    return "Successfully Authenticated.", True
+    token = create_jwt_token(
+        name=request.username,
+        admin=user_db[request.username]["admin"],
+        collections=user_coll_mapping.get(request.username, []),
+    )
+    return {"access_token": token, "token_type": "bearer"}
 
 @app.post("/conversation/start")
 async def start_conversation(request: session_start_req, redis: Redis = Depends(lambda: app.state.redis)):

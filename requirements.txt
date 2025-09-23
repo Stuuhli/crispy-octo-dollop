@@ -110,6 +110,7 @@ pydantic==2.10.5
 pydantic-core==2.27.2
 pydantic-settings==2.7.1
 pygments==2.19.1
+pyjwt[crypto]==2.10.1
 pylatexenc==2.10
 pymilvus==2.5.4
 pypdf==5.1.0

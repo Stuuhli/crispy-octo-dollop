@@ -1,7 +1,17 @@
-from app.config import USER_DB_PATH, BACKEND_FASTAPI_LOG
+from datetime import datetime, timedelta, timezone
+from typing import Iterable, List, Union
+
+from app.config import (
+    USER_DB_PATH,
+    BACKEND_FASTAPI_LOG,
+    JWT_SECRET_KEY,
+    JWT_ALGORITHM,
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+)
 from pydantic import BaseModel
 import json
 import os
+import jwt
 from app.utils.utils_logging import initialize_logging, logger
 initialize_logging(BACKEND_FASTAPI_LOG)
 
@@ -59,3 +69,28 @@ def load_json(filename=USER_DB_PATH):
                 file.write(str(empty_dict))
             file_data = json.load(file)
     return file_data
+
+
+def _collections_claim(collections: Iterable[str]) -> List[str]:
+    """Normalize collections into a list claim."""
+
+    if isinstance(collections, str):
+        return [collections]
+    return list(collections)
+
+
+def create_jwt_token(name: str, admin: bool, collections: Union[Iterable[str], str]) -> str:
+    """Create a signed JWT with default expiration."""
+
+    if not JWT_SECRET_KEY or not JWT_ALGORITHM:
+        raise ValueError("JWT configuration missing: secret key or algorithm not set")
+
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    payload = {
+        "sub": name,
+        "admin": admin,
+        "collections": _collections_claim(collections),
+        "exp": int(expires_at.timestamp()),
+    }
+
+    return jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)

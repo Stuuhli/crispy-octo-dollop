@@ -127,6 +127,7 @@ class ChatCLI(cmd.Cmd):
         self.read_collection= "" # current collection to retrieve from
         self.ingest_collection= "" # current collection to ingest files into
         self.user_client= None # milvus client for user
+        self.access_token = "" # bearer token received after auth
 
     def do_create(self, args):
         """ Create account by entering user details, then request is sent to API to update DB with new user
@@ -200,20 +201,36 @@ class ChatCLI(cmd.Cmd):
             "password": password
         }
         try:
-            response = requests.post(API_VALIDATE_USER.format(user= username), 
-                                    json=data)
+            response = requests.post(
+                API_VALIDATE_USER.format(user=username),
+                json=data,
+            )
+        except Exception as err:
+            print(f"Request error: {err}")
+            return True
+
+        if response.status_code == 401:
+            print("Invalid username or password")
+            self.authenticated = False
+            return True
+
+        try:
             response.raise_for_status()
         except HTTPError as http_err:
             print(f"HTTP error occurred: {http_err}")
-        except Exception as err:
-            print(f"Other error occurred: {err}")
-        else:
-            print(response.json()[0])
-            if response.json()[1]: 
-                self.authenticated= True
-            else:
-                self.authenticated= False
-                return True
+            self.authenticated = False
+            return True
+
+        data = response.json()
+        token = data.get("access_token")
+        if not token:
+            print("Authentication failed: token missing in response")
+            self.authenticated = False
+            return True
+
+        print("Successfully Authenticated.")
+        self.authenticated = True
+        self.access_token = token
         self.session_id = uuid.uuid4()
         if self.authenticated:
             print("Choose collection from:")

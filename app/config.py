@@ -8,6 +8,11 @@ parent_dir = os.path.dirname(script_dir)
 # Load .env variables
 load_dotenv(os.path.join(os.path.dirname(__file__), 'dev.env'))
 
+# Authentication
+JWT_ALGORITHM = os.environ.get("JWT_ALGORITHM")
+JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", "180"))
+
 # Session specific Databases
 USER_HISTORY = parent_dir+ os.environ.get("USER_HISTORY")
 CHAT_STORE_PATH = parent_dir + os.environ.get("CHAT_STORE_PATH")
