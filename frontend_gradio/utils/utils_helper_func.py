@@ -1,6 +1,6 @@
 from config_URL import MILVUS_URI, API_GET_EXISTING_CONV, API_GET_AVAILABLE_DOC_NAMES, API_LOG_FEEDBACK
 from pymilvus import MilvusClient
-from utils.utils_logging import logger, initialize_logging, FRONTEND_LOG # noqa: E402
+from utils.utils_logging import logger, initialize_logging, FRONTEND_LOG  # noqa: E402
 import json
 import pandas as pd
 import requests
@@ -14,7 +14,7 @@ def show_client(username, password):
     """
     return MilvusClient(uri=MILVUS_URI, token=f"{username}:{password}")
 
-def feedback_logger(**kwargs):
+def feedback_logger(*, headers=None, **kwargs):
     """ Send API call to log feedback for a session and LLM response in DB
 
     Returns:
@@ -23,13 +23,14 @@ def feedback_logger(**kwargs):
     data= kwargs
     logger.info(data)
     response_feedback = requests.post(
-            API_LOG_FEEDBACK,
-            json=data
-        )
+        API_LOG_FEEDBACK,
+        json=data,
+        headers=headers,
+    )
     response_feedback.raise_for_status()
     return response_feedback.json()
 
-def get_all_sessions(username: str, new_conv_id: str) -> list:
+def get_all_sessions(username: str, new_conv_id: str, headers=None) -> list:
     """ Get all sessions from redis conversation tracker followed by filtering on which ones are actually present in chat history db
 
     Args:
@@ -38,7 +39,10 @@ def get_all_sessions(username: str, new_conv_id: str) -> list:
     Returns:
         list: list of existing conversation ids
     """
-    session_id_response = requests.get(API_GET_EXISTING_CONV.format(session_id_user=new_conv_id + "$" +username))
+    session_id_response = requests.get(
+        API_GET_EXISTING_CONV.format(session_id_user=new_conv_id + "$" + username),
+        headers=headers,
+    )
     session_id_response.raise_for_status()
     existing_sessions = session_id_response.json()
     return existing_sessions
@@ -90,7 +94,7 @@ def make_doc_markdown(available_doc_list):
     
     return df
 
-def get_doc_names_frontend(conv_id: str, username: str):
+def get_doc_names_frontend(conv_id: str, username: str, headers=None):
     """ Gets document names available for the user and creates a markdown to display them in frontend. 
     Also for the user, get status of admin access privileges.
 
@@ -101,7 +105,10 @@ def get_doc_names_frontend(conv_id: str, username: str):
     Returns:
         available_doc_markdown(str): Markdown of available document info to show in the frontend
     """
-    available_docs_response= requests.get(API_GET_AVAILABLE_DOC_NAMES.format(session_id_user=conv_id + "$" + username))
+    available_docs_response = requests.get(
+        API_GET_AVAILABLE_DOC_NAMES.format(session_id_user=conv_id + "$" + username),
+        headers=headers,
+    )
     available_docs_response.raise_for_status()
     available_docs= available_docs_response.json()[0]
     admin_access_user= available_docs_response.json()[1]

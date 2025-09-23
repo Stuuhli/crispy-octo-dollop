@@ -33,7 +33,7 @@
 - [x] `app/main.py`: return a JWT from `/validate_user` and protect routes via `Depends(get_current_user)`.
 - [ ] `app/utils/utils_req_templates.py`: add request/response models if we want JWT payloads in OpenAPI responses.
 - [x] `CLI.py`: persist the Bearer token after login and send it with subsequent requests.
-- [ ] `frontend_gradio/`: refactor API calls to use JWT, add refresh/logout handling if needed.
+- [x] `frontend_gradio/`: refactor API calls to use JWT, add refresh/logout handling if needed.
 - [x] Admin-only endpoints (`create_user`, `ingest_file`, `create_collection`, `internal_get_vectordb`) enforce claims.
 - [ ] Logging / fraud detection: capture 401/403 events centrally via `utils_logging`.
 - [ ] Tests: add unit tests for token creation/expiry (`unit_tests/`) and integration tests with/without valid tokens.

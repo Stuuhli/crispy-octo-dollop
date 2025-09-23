@@ -72,3 +72,27 @@ INFO [frontend.py:42]:2025-09-22 15:08:18,514:Session id: e060705d-d5b0-4a85-908
 INFO [frontend.py:89]:2025-09-22 15:12:35,327:Bot response successful for user: admin_compliance for session id: e060705d-d5b0-4a85-908f-068e5c36d979
 ERROR [frontend.py:92]:2025-09-22 15:20:28,783:Got an error during getting bot response for session id: e060705d-d5b0-4a85-908f-068e5c36d979: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/e060705d-d5b0-4a85-908f-068e5c36d979$admin_compliance/message
 INFO [utils_helper_func.py:24]:2025-09-22 15:20:37,137:{'conv_id': 'e060705d-d5b0-4a85-908f-068e5c36d979', 'username': 'admin_compliance', 'LLM_response': 'Hallo! Wie kann ich Ihnen heute behilflich sein? Ich bin Kisters AI-Assistent und stehe Ihnen für Fragen zu den Richtlinien und Informationen von Kister zur Verfügung. [INFO]', 'feedback': 'Positive', 'feedback_comment': 'N/A'}
+INFO [_client.py:1025]:2025-09-23 14:04:50,661:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:04:50,681:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:04:50,933:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:04:51,064:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:167]:2025-09-23 14:05:50,326:Logging in for: admin_compliance
+ERROR [frontend.py:203]:2025-09-23 14:05:50,541:Got an error during authentication: 1
+INFO [frontend.py:167]:2025-09-23 14:06:17,470:Logging in for: admin_compliance
+ERROR [frontend.py:203]:2025-09-23 14:06:17,678:Got an error during authentication: 1
+INFO [_client.py:1025]:2025-09-23 14:10:42,997:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:10:43,011:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:10:43,774:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:10:43,797:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:235]:2025-09-23 14:11:58,405:Logging in for: admin_compliance
+INFO [frontend.py:265]:2025-09-23 14:11:58,962:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:283]:2025-09-23 14:11:58,973:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['New Chat', 'ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c']]
+INFO [frontend.py:284]:2025-09-23 14:11:58,973:Successful authentication for admin_compliance, session id: ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c
+INFO [frontend.py:49]:2025-09-23 14:11:59,931:Session id: ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c initialised for user: admin_compliance
+INFO [frontend.py:315]:2025-09-23 14:12:51,046:User admin_compliance logged out
+INFO [frontend.py:235]:2025-09-23 14:14:44,726:Logging in for: admin_compliance
+INFO [frontend.py:265]:2025-09-23 14:14:44,958:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:283]:2025-09-23 14:14:44,966:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['New Chat', 'cd5a3b04-e765-4375-92fd-34ba54b29a07']]
+INFO [frontend.py:284]:2025-09-23 14:14:44,966:Successful authentication for admin_compliance, session id: cd5a3b04-e765-4375-92fd-34ba54b29a07
+INFO [frontend.py:49]:2025-09-23 14:14:45,639:Session id: cd5a3b04-e765-4375-92fd-34ba54b29a07 initialised for user: admin_compliance
+INFO [frontend.py:126]:2025-09-23 14:18:40,022:Bot response successful for user: admin_compliance for session id: cd5a3b04-e765-4375-92fd-34ba54b29a07

@@ -24,6 +24,12 @@ class SessionState:
         self.ingest_collection=""
         self.user_client = None
         self.existing_conversations=[]
+        self.access_token = ""
+
+    def auth_headers(self):
+        if not self.access_token:
+            return {}
+        return {"Authorization": f"Bearer {self.access_token}"}
 
 session_instances={}
 
@@ -39,34 +45,61 @@ def initialize_instance(request: gr.Request):
     """
     if request.username in session_instances.keys():
         session_instances[request.session_hash] = session_instances.pop(request.username)
-        logger.info("Session id: %s initialised for user: %s", session_instances[request.session_hash].session_id, request.username)
-        existing_choices= session_instances[request.session_hash].existing_conversations
-        conv_id=session_instances[request.session_hash].session_id
-        available_doc_markdown, admin_access, col_type = get_doc_names_frontend(conv_id= conv_id, username= request.username)
+        session_state = session_instances[request.session_hash]
+        logger.info("Session id: %s initialised for user: %s", session_state.session_id, request.username)
+        existing_choices = session_state.existing_conversations
+        conv_id = session_state.session_id
+        available_doc_markdown, admin_access, col_type = get_doc_names_frontend(
+            conv_id=conv_id,
+            username=request.username,
+            headers=session_state.auth_headers(),
+        )
         ingestion_button_updated = gr.UploadButton(label="Ingest another document", size="md", variant="primary", file_types=["file"], interactive= admin_access)
         return f"# KI-Pilot - AI Assistant (Mode: {col_type})<br>", f"# KI-Pilot - AI Assistant (Mode: {col_type})", gr.Dropdown(choices=existing_choices, label="Select Conversation", value=None), gr.Dataframe(available_doc_markdown), ingestion_button_updated
 
 def upload_file(filepath, request: gr.Request):
     ''' Get collection from read collection which itself gets its value from user_collection mapping: thus user can only upload to the collection they are assigned to if they are admin'''
-    if not session_instances[request.session_hash].authenticated:
+    session_state = session_instances.get(request.session_hash)
+    if not session_state or not session_state.authenticated:
         return "Please authenticate first."
-    logger.info("User %s ingesting file: %s to collection: %s", request.username, filepath.split("/")[-1], session_instances[request.session_hash].read_collection)
-    data = {"conv_id": session_instances[request.session_hash].session_id, "file": filepath, "ingest_collection":session_instances[request.session_hash].read_collection}
+    logger.info(
+        "User %s ingesting file: %s to collection: %s",
+        request.username,
+        filepath.split("/")[-1],
+        session_state.read_collection,
+    )
+    data = {
+        "conv_id": session_state.session_id,
+        "file": filepath,
+        "ingest_collection": session_state.read_collection,
+    }
     try:
         response = requests.post(
-            API_INGEST_DOC_FRONTEND.format(session_id_user=f"{session_instances[request.session_hash].session_id}${session_instances[request.session_hash].username}"),
-            json=data
+            API_INGEST_DOC_FRONTEND.format(
+                session_id_user=f"{session_state.session_id}${session_state.username}"
+            ),
+            json=data,
+            headers=session_state.auth_headers(),
         )
         response.raise_for_status()
         message= response.json()[1]
     except Exception as e:
-        logger.error("Got an error during uploading file: %s for session id: %s: %s", filepath.split("/")[-1], session_instances[request.session_hash].session_id, str(e))
+        logger.error(
+            "Got an error during uploading file: %s for session id: %s: %s",
+            filepath.split("/")[-1],
+            session_state.session_id,
+            str(e),
+        )
     
-    available_doc_markdown, admin_access, _ = get_doc_names_frontend(conv_id= session_instances[request.session_hash].session_id, username= request.username)
+    available_doc_markdown, admin_access, _ = get_doc_names_frontend(
+        conv_id=session_state.session_id,
+        username=request.username,
+        headers=session_state.auth_headers(),
+    )
     upload_button_updated = gr.UploadButton(label="Ingest another document", size="md", variant="primary", file_types=["file"], interactive= admin_access)
     return upload_button_updated, gr.Markdown(message, visible=True), gr.Dataframe(available_doc_markdown)
 
-def send_chat(message, request:gr.Request):
+def send_chat(message, request: gr.Request):
     """ Send user message to chat api and get response
 
     Args:
@@ -76,20 +109,32 @@ def send_chat(message, request:gr.Request):
     Returns:
         reply: reply from chatbot
     """
-    if not session_instances[request.session_hash].authenticated:
+    session_state = session_instances.get(request.session_hash)
+    if not session_state or not session_state.authenticated:
         return "Please authenticate first."
-    data = {"conv_id": session_instances[request.session_hash].session_id, "message": message}
+    data = {"conv_id": session_state.session_id, "message": message}
     try:
         response = requests.post(
-            API_CONV_SEND.format(session_id_user=f"{session_instances[request.session_hash].session_id}${session_instances[request.session_hash].username}"),
-            json=data
+            API_CONV_SEND.format(
+                session_id_user=f"{session_state.session_id}${session_state.username}"
+            ),
+            json=data,
+            headers=session_state.auth_headers(),
         )
         response.raise_for_status()
         reply = str(response.json())
-        logger.info("Bot response successful for user: %s for session id: %s", session_instances[request.session_hash].username, session_instances[request.session_hash].session_id)
+        logger.info(
+            "Bot response successful for user: %s for session id: %s",
+            session_state.username,
+            session_state.session_id,
+        )
         return reply
     except Exception as e:
-        logger.error("Got an error during getting bot response for session id: %s: %s",session_instances[request.session_hash].session_id, str(e))
+        logger.error(
+            "Got an error during getting bot response for session id: %s: %s",
+            session_state.session_id,
+            str(e),
+        )
         return f"Chat error: {str(e)}"
 
 def respond(message, chat_history, request: gr.Request):
@@ -103,13 +148,20 @@ def respond(message, chat_history, request: gr.Request):
 
 def handle_feedback(like_data: gr.LikeData, request:gr.Request):
     """Handle like/dislike events and show feedback input for dislikes"""
-    conv_id= session_instances[request.session_hash].session_id
-    username= session_instances[request.session_hash].username
+    session_state = session_instances[request.session_hash]
+    conv_id = session_state.session_id
+    username = session_state.username
     if not like_data.liked:  # If disliked
         return gr.update(visible=True), gr.update(visible=True), gr.update(visible=True), gr.update(visible=False), gr.update(visible=False), like_data.value[0]
     else:  # If liked
-        feedback_response= feedback_logger(conv_id= conv_id, username= username, 
-                        LLM_response=like_data.value[0], feedback= "Positive", feedback_comment= "N/A")
+        feedback_response = feedback_logger(
+            conv_id=conv_id,
+            username=username,
+            LLM_response=like_data.value[0],
+            feedback="Positive",
+            feedback_comment="N/A",
+            headers=session_state.auth_headers(),
+        )
         if not feedback_response:
             logger.error("Feedback not logged for user %s in session: %s", username, conv_id)
         else: 
@@ -117,12 +169,19 @@ def handle_feedback(like_data: gr.LikeData, request:gr.Request):
         return gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=True), gr.update(visible=True), like_data.value[0]
     
 def submit_feedback(feedback_text, message_content, request:gr.Request):
-    conv_id= session_instances[request.session_hash].session_id
-    username= session_instances[request.session_hash].username
+    session_state = session_instances[request.session_hash]
+    conv_id = session_state.session_id
+    username = session_state.username
     """Process the feedback submitted by user"""
     if feedback_text.strip():
-        feedback_response= feedback_logger(conv_id= conv_id, username= username, 
-                        LLM_response=message_content, feedback= "Negative", feedback_comment= feedback_text)
+        feedback_response = feedback_logger(
+            conv_id=conv_id,
+            username=username,
+            LLM_response=message_content,
+            feedback="Negative",
+            feedback_comment=feedback_text,
+            headers=session_state.auth_headers(),
+        )
         print(f"Feedback received for message '{message_content}': {feedback_text}")
         if not feedback_response: 
             logger.error("Feedback not logged for user %s in session: %s", username, conv_id)
@@ -143,10 +202,19 @@ def dropdown_update_convo(dropdown, evt: gr.SelectData, request: gr.Request):
     Returns:
         chatbot_selected: chat history of selected conv id
     """
-    data= {"old_conv_id": session_instances[request.session_hash].session_id, "new_conv_id": str(evt.value), "username": request.username}
-    response = requests.post(API_GET_HISTORY.format(session_id_user=str(evt.value) + "$" + request.username), json=data)
+    session_state = session_instances[request.session_hash]
+    data = {
+        "old_conv_id": session_state.session_id,
+        "new_conv_id": str(evt.value),
+        "username": request.username,
+    }
+    response = requests.post(
+        API_GET_HISTORY.format(session_id_user=str(evt.value) + "$" + request.username),
+        json=data,
+        headers=session_state.auth_headers(),
+    )
     response.raise_for_status()
-    session_instances[request.session_hash].session_id=str(evt.value)
+    session_state.session_id = str(evt.value)
     logger.info("User %s changed chat session to previous session: %s", request.username, evt.value)
     chatbot_selected = gr.Chatbot(value=convert_chat(response.json()),type="messages", placeholder="Hi, how can I help you today?", scale=9, resizable=True, show_copy_button=True, height=500)
     return chatbot_selected
@@ -166,32 +234,51 @@ def authenticate_user(username: str, password: str):
     try:
         logger.info("Logging in for: %s", username)
         response = requests.post(API_VALIDATE_USER.format(user=username), json=data)
+        if response.status_code == 401:
+            logger.info("Invalid credentials for %s", username)
+            return False
         response.raise_for_status()
-        success = response.json()[1]
-        if success:
+        token_payload = response.json()
+        access_token = token_payload.get("access_token")
+        if access_token:
             temp_state=SessionState()
             temp_state.authenticated = True
             temp_state.username = username
             temp_state.session_id = str(uuid.uuid4())
             temp_state.user_client = show_client(username=username, password=password)
+            temp_state.access_token = access_token
+            token_type = token_payload.get("token_type", "bearer")
+            if token_type.lower() != "bearer":
+                logger.warning("Unexpected token type %s for user %s", token_type, username)
             collections = temp_state.user_client.list_collections()
             init_data = {
                 "conv_id": temp_state.session_id,
                 "username": temp_state.username,
                 "password": password
             }
-            init_response = requests.post(API_CONV_START, json=init_data)
+            init_response = requests.post(
+                API_CONV_START,
+                json=init_data,
+                headers=temp_state.auth_headers(),
+            )
             init_response.raise_for_status()
             logger.info("User %s has collection: %s assigned at the backend", username, init_response.json()["user_collection"])
             temp_state.read_collection= init_response.json()["user_collection"]
             # create collection if not present
             if temp_state.read_collection not in collections:
                 logger.warning("No collections exist for user: %s, creating collection %s", username, temp_state.read_collection)
-                collection_response= requests.post(API_CREATE_EMPTY_COLLECTION.format(collection_name= temp_state.read_collection))
+                collection_response = requests.post(
+                    API_CREATE_EMPTY_COLLECTION.format(collection_name=temp_state.read_collection),
+                    headers=temp_state.auth_headers(),
+                )
                 collection_response.raise_for_status()
                 if not collection_response.json():
                     return False
-            temp_state.existing_conversations= get_all_sessions(username=username, new_conv_id= copy.deepcopy(temp_state.session_id))
+            temp_state.existing_conversations = get_all_sessions(
+                username=username,
+                new_conv_id=copy.deepcopy(temp_state.session_id),
+                headers=temp_state.auth_headers(),
+            )
             session_instances[username]=copy.deepcopy(temp_state)
             logger.info("Current object created for %s has existing convos: %s", username, temp_state.existing_conversations)
             logger.info("Successful authentication for %s, session id: %s", username, temp_state.session_id)
@@ -206,11 +293,16 @@ def authenticate_user(username: str, password: str):
 def do_quit(request: gr.Request):
         """Exit the chat
         """
-        data= {
-            "conv_id": session_instances[request.session_hash].session_id,
-            "user": request.username
+        session_state = session_instances[request.session_hash]
+        data = {
+            "conv_id": session_state.session_id,
+            "user": request.username,
         }
-        response= requests.post(API_LOGOUT, json=data)
+        response = requests.post(
+            API_LOGOUT,
+            json=data,
+            headers=session_state.auth_headers(),
+        )
         if response.status_code==200:
             logger.info("%s for user %s", response.json(), request.username)
         else:

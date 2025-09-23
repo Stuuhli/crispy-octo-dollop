@@ -42,6 +42,8 @@ import os
 import pickle
 import shutil
 import pandas as pd
+
+DOC_STORE_DIR = "/doc_store"
 import jwt
 
 # logging config
@@ -103,7 +105,10 @@ app.add_middleware(
 )
 
 add_timing_middleware(app, record=logger.info, prefix="timing")
-app.mount("/doc_store", StaticFiles(directory="/doc_store"), name="doc_store")
+if os.path.isdir(DOC_STORE_DIR):
+    app.mount("/doc_store", StaticFiles(directory=DOC_STORE_DIR), name="doc_store")
+else:
+    logger.warning("Doc store directory %s not found; static mount disabled", DOC_STORE_DIR)
 
 @app.get("/")
 def welcome() -> Dict[str, str]:

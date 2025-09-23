@@ -1,11 +1,27 @@
-.venv
-data
-__pycache__
-*.pyc
-*.pyc
+# General
+.venv/
+venv/
+__pycache__/
+*.py[cod]
 .DS_Store
-.idea
-.vscode
+.idea/
+.vscode/
+.pytest_cache/
 *.log
 *.env
 *.sif
+
+# Runtime data & artifacts
+data/
+doc_store/
+user_data/
+milvus-data/
+etcd-data/
+
+# Generated caches
+frontend_gradio/__pycache__/
+frontend_gradio/utils/__pycache__/
+app/__pycache__/
+app/*/__pycache__/
+helper_scripts/__pycache__/
+unit_tests/**/__pycache__/
