@@ -1,31 +1,26 @@
-# General
-.venv/
-venv/
-__pycache__/
-*.py[cod]
-.DS_Store
-.idea/
-.vscode/
-.pytest_cache/
-*.log
-*.env
 *.sif
+*.img
+*.png
+*.log
+*.pid
+*.sqlite
+*.db
+*.env
+*.rdb
+*.xlsx
+*.pytest_cache
+*.ipynb
+*.json
 
-# Runtime data & artifacts
-data/
-doc_store/
-user_data/
-milvus-data/
-etcd-data/
+.vscode
+.DS_Store
 
-# Generated caches
-frontend_gradio/__pycache__/
-frontend_gradio/utils/__pycache__/
-app/__pycache__/
-app/*/__pycache__/
-helper_scripts/__pycache__/
-unit_tests/**/__pycache__/
-etcd-data/member/wal/
-etcd-data/member/snap/
-milvus-data/rdb_data_meta_kv/
-milvus-data/rdb_data/
+__pycache__
+__pypackages__
+
+app/dev.env
+data
+milvus-data
+etcd-data
+HPC_scripts/HF_key.env
+.venv

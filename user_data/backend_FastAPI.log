@@ -1339,3 +1339,686 @@ INFO [timing.py:139]:2025-09-23 14:40:52,243:TIMING: Wall:  281.0ms | CPU:  280.
 INFO [_client.py:1038]:2025-09-23 14:40:52,243:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
 WARNING [utils_auth.py:111]:2025-09-23 14:40:52,248:JWT decode failed: Not enough segments
 INFO [_client.py:1786]:2025-09-23 14:41:14,716:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:45:38,433:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:45:50,850:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:46:26,267:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:47:28,266:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:48:37,468:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:49:41,551:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:50:56,860:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:52:10,213:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [utils_ingestion.py:78]:2025-09-23 14:52:10,320: Milvus reponse to ingestion of /home/tobi/crispy-octo-dollop/data/ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 is Ingestion Successful
+INFO [timing.py:139]:2025-09-23 14:52:10,323:TIMING: Wall: 1404812.9ms | CPU: 7086850.0ms | timing.app.main.ingest_file_frontend
+INFO [main.py:376]:2025-09-23 14:52:10,327: Getting available documents to chat for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 and collection compliance_center
+INFO [timing.py:139]:2025-09-23 14:52:10,896:TIMING: Wall:  570.0ms | CPU:   20.0ms | timing.app.main.get_docs
+INFO [main.py:447]:2025-09-23 14:53:51,897:User: admin_compliance ingesting file: /tmp/gradio/0c34a51fc334857467fad189ab7ac3143339c0d1029ebc0276b43607742b7a2a/ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf to collection: compliance_center
+INFO [main.py:472]:2025-09-23 14:53:51,899:New file in /home/tobi/crispy-octo-dollop/data folder: ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf
+INFO [docling_parse_process.py:514]:2025-09-23 14:53:51,905:Date extracted for markitdown for ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf: 29-09-2022
+INFO [docling_parse_process.py:526]:2025-09-23 14:53:51,905:Cache not found for this file ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf. Continuing with parsing.
+INFO [document.py:321]:2025-09-23 14:53:51,906:detected formats: [<InputFormat.PDF: 'pdf'>]
+INFO [document_converter.py:284]:2025-09-23 14:53:51,909:Going to convert document batch...
+INFO [document_converter.py:319]:2025-09-23 14:53:51,909:Initializing pipeline for StandardPdfPipeline with options hash edfafc85ecb0f718824d543e40889984
+WARNING [accelerator_utils.py:66]:2025-09-23 14:53:51,910:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:53:51,910:Accelerator device: 'cpu'
+WARNING [accelerator_utils.py:66]:2025-09-23 14:53:52,463:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:53:52,463:Accelerator device: 'cpu'
+INFO [base_pipeline.py:39]:2025-09-23 14:53:52,774:Processing document ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf
+INFO [document_converter.py:299]:2025-09-23 14:55:03,745:Finished converting document ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf in 71.84 sec.
+INFO [docling_parse_process.py:534]:2025-09-23 14:55:03,839:Saving png for file ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf, total pages: 26
+INFO [docling_parse_process.py:537]:2025-09-23 14:55:09,217:Docling parsing successful for file ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf
+INFO [utils_ingestion.py:72]:2025-09-23 14:55:09,378:Chunking document of 67 elements post parsing for collection compliance_center for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303
+INFO [utils_ingestion.py:76]:2025-09-23 14:55:09,439:ingesting 10 rows for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 to collection compliance_center
+INFO [milvus_ingest.py:238]:2025-09-23 14:55:09,876:Embedding new chunks
+INFO [milvus_ingest.py:62]:2025-09-23 14:55:09,888:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:55:09,904:Encoding text using embeddinggemma
+INFO [_client.py:1786]:2025-09-23 14:55:31,192:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 14:56:09,281:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [utils_ingestion.py:78]:2025-09-23 14:56:09,312: Milvus reponse to ingestion of /home/tobi/crispy-octo-dollop/data/ISO_IEC 27001_2022_ Information security, cybersecurity and -- ISO -- 2022-10, 3, 2022 -- ISO -- c40db4f08bbcd7ac67a02553fcb47a70 -- Annas Archive.pdf for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 is Ingestion Successful
+INFO [timing.py:139]:2025-09-23 14:56:09,313:TIMING: Wall: 137418.3ms | CPU: 958280.0ms | timing.app.main.ingest_file_frontend
+INFO [main.py:376]:2025-09-23 14:56:09,317: Getting available documents to chat for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 and collection compliance_center
+INFO [timing.py:139]:2025-09-23 14:56:09,876:TIMING: Wall:  560.1ms | CPU:   10.0ms | timing.app.main.get_docs
+INFO [main.py:447]:2025-09-23 14:56:19,506:User: admin_compliance ingesting file: /tmp/gradio/c579e61bc7d00431e61ae7a2887fe974746d31673e37106b6e93efa5e10e9720/C5_2020.pdf to collection: compliance_center
+INFO [main.py:472]:2025-09-23 14:56:19,511:New file in /home/tobi/crispy-octo-dollop/data folder: C5_2020.pdf
+INFO [docling_parse_process.py:514]:2025-09-23 14:56:19,533:Date extracted for markitdown for C5_2020.pdf: 11-12-2020
+INFO [docling_parse_process.py:526]:2025-09-23 14:56:19,534:Cache not found for this file C5_2020.pdf. Continuing with parsing.
+INFO [document.py:321]:2025-09-23 14:56:19,536:detected formats: [<InputFormat.PDF: 'pdf'>]
+INFO [document_converter.py:284]:2025-09-23 14:56:19,550:Going to convert document batch...
+INFO [document_converter.py:319]:2025-09-23 14:56:19,550:Initializing pipeline for StandardPdfPipeline with options hash edfafc85ecb0f718824d543e40889984
+WARNING [accelerator_utils.py:66]:2025-09-23 14:56:19,551:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:56:19,551:Accelerator device: 'cpu'
+WARNING [accelerator_utils.py:66]:2025-09-23 14:56:20,019:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:56:20,019:Accelerator device: 'cpu'
+INFO [base_pipeline.py:39]:2025-09-23 14:56:20,302:Processing document C5_2020.pdf
+INFO [document_converter.py:299]:2025-09-23 14:59:55,614:Finished converting document C5_2020.pdf in 216.08 sec.
+INFO [docling_parse_process.py:534]:2025-09-23 14:59:56,142:Saving png for file C5_2020.pdf, total pages: 132
+INFO [docling_parse_process.py:537]:2025-09-23 15:00:30,708:Docling parsing successful for file C5_2020.pdf
+INFO [utils_ingestion.py:72]:2025-09-23 15:00:31,027:Chunking document of 714 elements post parsing for collection compliance_center for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303
+INFO [main.py:150]:2025-09-23 15:00:31,031: Validating: admin_compliance
+INFO [main.py:159]:2025-09-23 15:00:31,222: Validation successful for admin_compliance
+INFO [main.py:150]:2025-09-23 15:00:31,223: Validating: admin_compliance
+INFO [main.py:159]:2025-09-23 15:00:31,425: Validation successful for admin_compliance
+INFO [timing.py:139]:2025-09-23 15:00:31,426:TIMING: Wall:  395.6ms | CPU:  790.0ms | timing.app.main.validate_user
+INFO [timing.py:139]:2025-09-23 15:00:31,426:TIMING: Wall:  396.1ms | CPU:  790.0ms | timing.app.main.validate_user
+INFO [utils_ingestion.py:76]:2025-09-23 15:00:31,468:ingesting 55 rows for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 to collection compliance_center
+INFO [main.py:182]:2025-09-23 15:00:31,494: Initializing session: a1d576f0-bc2f-4234-98ec-0e9fcbe51273 for user admin_compliance
+INFO [main.py:182]:2025-09-23 15:00:31,495: Initializing session: ca148fc3-8b86-485b-9872-7a98ec10754f for user admin_compliance
+INFO [main.py:210]:2025-09-23 15:00:31,497:Successfully set up session variables in Redis for session: a1d576f0-bc2f-4234-98ec-0e9fcbe51273 
+INFO [main.py:225]:2025-09-23 15:00:31,498:Started session: a1d576f0-bc2f-4234-98ec-0e9fcbe51273
+INFO [timing.py:139]:2025-09-23 15:00:31,498:TIMING: Wall:    6.5ms | CPU:   10.0ms | timing.app.main.start_conversation
+INFO [main.py:345]:2025-09-23 15:00:31,503:Getting existing conversation ids for user: admin_compliance on user login
+INFO [main.py:210]:2025-09-23 15:00:31,503:Successfully set up session variables in Redis for session: ca148fc3-8b86-485b-9872-7a98ec10754f 
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,503:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_745c752c-2abd-424e-9faa-e489bc21853f.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,504:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_aa5e1e3a-6ad7-4f0e-9b36-51fa28838166.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,504:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_f7b13798-d0f3-4284-854a-48648c65f505.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,504:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,504:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_a0fc06d8-cda5-4aba-89a9-fbcd2b244303.json is empty
+INFO [timing.py:139]:2025-09-23 15:00:31,505:TIMING: Wall:    4.4ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [main.py:225]:2025-09-23 15:00:31,507:Started session: ca148fc3-8b86-485b-9872-7a98ec10754f
+INFO [timing.py:139]:2025-09-23 15:00:31,508:TIMING: Wall:   15.9ms | CPU:   10.0ms | timing.app.main.start_conversation
+INFO [main.py:150]:2025-09-23 15:00:31,514: Validating: admin_compliance
+INFO [main.py:159]:2025-09-23 15:00:31,735: Validation successful for admin_compliance
+INFO [main.py:345]:2025-09-23 15:00:31,736:Getting existing conversation ids for user: admin_compliance on user login
+INFO [timing.py:139]:2025-09-23 15:00:31,736:TIMING: Wall:  223.1ms | CPU:  220.0ms | timing.app.main.validate_user
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,737:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_745c752c-2abd-424e-9faa-e489bc21853f.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,737:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_aa5e1e3a-6ad7-4f0e-9b36-51fa28838166.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,737:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_f7b13798-d0f3-4284-854a-48648c65f505.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,737:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,737:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_a0fc06d8-cda5-4aba-89a9-fbcd2b244303.json is empty
+INFO [timing.py:139]:2025-09-23 15:00:31,738:TIMING: Wall:  226.3ms | CPU:  230.0ms | timing.app.main.get_existing_conv_id
+INFO [main.py:182]:2025-09-23 15:00:31,750: Initializing session: aff7a446-a689-4d20-b0aa-0326a03fd033 for user admin_compliance
+INFO [main.py:210]:2025-09-23 15:00:31,751:Successfully set up session variables in Redis for session: aff7a446-a689-4d20-b0aa-0326a03fd033 
+INFO [main.py:225]:2025-09-23 15:00:31,752:Started session: aff7a446-a689-4d20-b0aa-0326a03fd033
+INFO [timing.py:139]:2025-09-23 15:00:31,752:TIMING: Wall:    3.5ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [main.py:345]:2025-09-23 15:00:31,755:Getting existing conversation ids for user: admin_compliance on user login
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,756:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_745c752c-2abd-424e-9faa-e489bc21853f.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,756:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_aa5e1e3a-6ad7-4f0e-9b36-51fa28838166.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,756:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_f7b13798-d0f3-4284-854a-48648c65f505.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,756:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,756:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_a0fc06d8-cda5-4aba-89a9-fbcd2b244303.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 15:00:31,757:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_ca148fc3-8b86-485b-9872-7a98ec10754f.json is empty
+INFO [timing.py:139]:2025-09-23 15:00:31,757:TIMING: Wall:    2.7ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [milvus_ingest.py:238]:2025-09-23 15:00:31,880:Embedding new chunks
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:31,899:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:31,922:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:31,942:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:31,972:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:32,000:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:32,020:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:32,041:Encoding text using embeddinggemma
+INFO [main.py:376]:2025-09-23 15:00:32,070: Getting available documents to chat for session: aff7a446-a689-4d20-b0aa-0326a03fd033 and collection compliance_center
+INFO [timing.py:139]:2025-09-23 15:00:32,668:TIMING: Wall:  603.4ms | CPU:   30.0ms | timing.app.main.get_docs
+INFO [main.py:447]:2025-09-23 15:00:38,525:User: admin_compliance ingesting file: /tmp/gradio/0d3413dd79a4e625752bf2a91286c26fa16078fba2e33829026335cd2492f628/C5_2020.pdf to collection: compliance_center
+INFO [main.py:472]:2025-09-23 15:00:38,530:New file in /home/tobi/crispy-octo-dollop/data folder: C5_2020.pdf
+INFO [docling_parse_process.py:514]:2025-09-23 15:00:38,567:Date extracted for markitdown for C5_2020.pdf: 11-12-2020
+INFO [docling_parse_process.py:523]:2025-09-23 15:00:38,569:File C5_2020.pdf already parsed by docling: using the cached file for downstream ingestion at collection compliance_center
+INFO [utils_ingestion.py:72]:2025-09-23 15:00:40,645:Chunking document of 714 elements post parsing for collection compliance_center for session: aff7a446-a689-4d20-b0aa-0326a03fd033
+INFO [utils_ingestion.py:76]:2025-09-23 15:00:41,251:ingesting 55 rows for session: aff7a446-a689-4d20-b0aa-0326a03fd033 to collection compliance_center
+INFO [milvus_ingest.py:238]:2025-09-23 15:00:41,674:Embedding new chunks
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,689:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,713:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,731:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,756:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,780:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,805:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 15:00:41,827:Encoding text using embeddinggemma
+INFO [config.py:54]:2025-09-23 15:01:28,336:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:01:30,096:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:01:30,642: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:30,645:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:30,651:TIMING: Wall:    1.9ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:01:30,653:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:01:30,658: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:30,661:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:01:30,667: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:01:30,890: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:01:30,891:TIMING: Wall:  225.3ms | CPU:  220.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:01:30,892:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:01:30,898: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:30,901:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:01:30,905: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:01:31,134:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:01:31,135:TIMING: Wall:  230.5ms | CPU:  230.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:01:31,136:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,141: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,143:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:01:31,384: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:01:31,613: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:01:31,614:TIMING: Wall:  230.2ms | CPU:  230.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:01:31,614:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:01:31,618:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:01:31,622: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,624:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,629:TIMING: Wall:    2.1ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:01:31,629:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,635: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,638:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,643:TIMING: Wall:    1.7ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:01:31,643:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,649: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,651:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,657:TIMING: Wall:    2.7ms | CPU:   10.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:01:31,658:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,664: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,666:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,672:TIMING: Wall:    2.6ms | CPU:   10.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:01:31,673:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,680: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,682:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,688:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:01:31,689:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,694: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,696:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,702:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:01:31,702:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,708: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,710:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,716:TIMING: Wall:    2.4ms | CPU:    0.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:01:31,716:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,722: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,725:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,729:TIMING: Wall:    2.0ms | CPU:   10.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:01:31,730:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,736: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,738:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,741:TIMING: Wall:    0.6ms | CPU:    0.0ms | <Path: /change_collection/conv-1$bob>
+INFO [_client.py:1038]:2025-09-23 15:01:31,742:HTTP Request: POST http://testserver/change_collection/conv-1$bob "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:01:31,938: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,940:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,943:TIMING: Wall:    0.3ms | CPU:    0.0ms | <Path: /conversation/conv-1$bob/file_name>
+INFO [_client.py:1038]:2025-09-23 15:01:31,944:HTTP Request: POST http://testserver/conversation/conv-1$bob/file_name "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:01:31,954: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,956:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,960:TIMING: Wall:    1.5ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:01:31,961:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,967: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,969:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,974:TIMING: Wall:    1.4ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:01:31,974:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:01:31,981: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:01:31,983:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:01:31,989:TIMING: Wall:    2.1ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:01:31,989:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [_client.py:1786]:2025-09-23 15:02:23,426:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:02:39,824:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:03:06,120:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:03:36,823:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:04:09,792:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:04:40,810:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:05:08,389:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:05:40,131:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [utils_ingestion.py:78]:2025-09-23 15:05:40,247: Milvus reponse to ingestion of /home/tobi/crispy-octo-dollop/data/C5_2020.pdf for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 is Ingestion Successful
+INFO [timing.py:139]:2025-09-23 15:05:40,251:TIMING: Wall: 560745.2ms | CPU: 2590170.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1786]:2025-09-23 15:06:10,903:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:06:44,824:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [config.py:54]:2025-09-23 15:07:05,661:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:07:07,234:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:07:07,893: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:07,897:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:07,903:TIMING: Wall:    1.6ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:07:07,904:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:07:07,912: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:07,915:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:07:07,920: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:07:08,198: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:07:08,199:TIMING: Wall:  280.2ms | CPU:  280.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:07:08,200:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:07:08,207: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:08,209:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:07:08,214: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:07:08,485:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:07:08,487:TIMING: Wall:  273.0ms | CPU:  270.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:07:08,488:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:08,494: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:08,497:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:07:08,769: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:07:09,063: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:07:09,064:TIMING: Wall:  295.2ms | CPU:  300.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:07:09,064:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:07:09,070:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:07:09,076: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,078:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:07:09,083:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:07:09,083:TIMING: Wall:    1.8ms | CPU:   10.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:07:09,084:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,342: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,345:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:07:09,350:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:07:09,351:TIMING: Wall:    2.7ms | CPU:   10.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:07:09,352:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,365: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,368:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:07:09,373:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:07:09,374:TIMING: Wall:    3.1ms | CPU:    0.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:07:09,375:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,391: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,394:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,398:TIMING: Wall:    1.8ms | CPU:   10.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:07:09,399:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,408: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,411:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,416:TIMING: Wall:    1.7ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:07:09,417:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,428: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,431:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,436:TIMING: Wall:    1.4ms | CPU:   10.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:07:09,437:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,445: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,448:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,459:TIMING: Wall:    7.1ms | CPU:   10.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:07:09,460:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,467: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,470:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,481:TIMING: Wall:    4.0ms | CPU:   10.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:07:09,482:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,491: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,493:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,497:TIMING: Wall:    0.4ms | CPU:    0.0ms | <Path: /change_collection/conv-1$bob>
+INFO [_client.py:1038]:2025-09-23 15:07:09,498:HTTP Request: POST http://testserver/change_collection/conv-1$bob "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:07:09,511: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,514:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,518:TIMING: Wall:    0.5ms | CPU:    0.0ms | <Path: /conversation/conv-1$bob/file_name>
+INFO [_client.py:1038]:2025-09-23 15:07:09,519:HTTP Request: POST http://testserver/conversation/conv-1$bob/file_name "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:07:09,532: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,534:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,540:TIMING: Wall:    2.2ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:07:09,541:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,548: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,551:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,556:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:07:09,557:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:07:09,564: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:07:09,567:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:07:09,576:TIMING: Wall:    5.5ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:07:09,577:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [_client.py:1786]:2025-09-23 15:07:14,169:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:07:31,742:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:08:03,720:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [_client.py:1786]:2025-09-23 15:08:37,624:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [utils_ingestion.py:78]:2025-09-23 15:08:37,713: Milvus reponse to ingestion of /home/tobi/crispy-octo-dollop/data/C5_2020.pdf for session: aff7a446-a689-4d20-b0aa-0326a03fd033 is Ingestion Successful
+INFO [timing.py:139]:2025-09-23 15:08:37,716:TIMING: Wall: 479192.2ms | CPU: 4790.0ms | timing.app.main.ingest_file_frontend
+INFO [main.py:376]:2025-09-23 15:08:37,725: Getting available documents to chat for session: aff7a446-a689-4d20-b0aa-0326a03fd033 and collection compliance_center
+INFO [timing.py:139]:2025-09-23 15:08:38,307:TIMING: Wall:  585.4ms | CPU:   40.0ms | timing.app.main.get_docs
+INFO [main.py:238]:2025-09-23 15:09:48,861: User message to bot for session: aff7a446-a689-4d20-b0aa-0326a03fd033, message:Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?
+INFO [_client.py:1786]:2025-09-23 15:09:49,021:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+INFO [utils_LLM.py:156]:2025-09-23 15:09:49,486:Retrieval completed, reranking now.
+WARNING [utils_LLM.py:97]:2025-09-23 15:09:53,819:GPU not found, resorting to CPU
+INFO [utils_LLM.py:177]:2025-09-23 15:10:35,148:Reranking done.
+INFO [main.py:253]:2025-09-23 15:10:35,149:For session: aff7a446-a689-4d20-b0aa-0326a03fd033 and collection: compliance_center, 3 relevant sources found
+INFO [citation_engine.py:151]:2025-09-23 15:10:35,156:after chat template, qa_messages: metadata={'prompt_type': <PromptType.CUSTOM: 'custom'>} template_vars=['context_str', 'query_str', 'query_str'] kwargs={} output_parser=None template_var_mappings=None function_mappings=None message_templates=[ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. Below are several numbered sources of information:\n------\n{context_str}\n------\nQuery: {query_str}\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='{query_str}')])]
+INFO [citation_engine.py:153]:2025-09-23 15:10:35,157:after chat template, refine_messages: metadata={'prompt_type': <PromptType.CUSTOM: 'custom'>} template_vars=['existing_answer', 'context_msg', 'query_str', 'query_str'] kwargs={} output_parser=None template_var_mappings=None function_mappings=None message_templates=[ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. We have provided an existing answer: {existing_answer}. Below are several numbered sources of information. Use them to refine the existing answer. If the provided sources are not helpful, you will repeat the existing answer.\nBegin refining!\n------\n{context_msg}\n------\nQuery: {query_str}\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='{query_str}')])]
+INFO [utils_generation.py:255]:2025-09-23 15:10:35,158:Message to LLM before predict [ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. Below are several numbered sources of information:\n------\n\n------\nQuery: Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?')])]
+INFO [utils_generation.py:255]:2025-09-23 15:10:35,158:Message to LLM before predict [ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. We have provided an existing answer: . Below are several numbered sources of information. Use them to refine the existing answer. If the provided sources are not helpful, you will repeat the existing answer.\nBegin refining!\n------\n\n------\nQuery: Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?')])]
+INFO [utils_generation.py:255]:2025-09-23 15:10:35,158:Message to LLM before predict [ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. We have provided an existing answer: . Below are several numbered sources of information. Use them to refine the existing answer. If the provided sources are not helpful, you will repeat the existing answer.\nBegin refining!\n------\n\n------\nQuery: Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?')])]
+INFO [utils_generation.py:112]:2025-09-23 15:10:35,166:Context after compaction: ["Source 1:\nDocument_Name:KISTERS_IS_PasswortRichtlinie.pdf \nSection:KISTERS Passwortrichtlinie Identitätsmanagement und Authentisierung\n \n## \n\nv.4.1, 2025-07-29\n\nVerantwortlich: KISTERS CISO\n\nSeite 1 / 12\n\nSection:Inhaltsverzeichnis\n \n<table><tbody><tr><td>1</td><td>EINLEITUNG ............................................................................................................... 3</td></tr><tr><td>1.1</td><td>Motivationund Ziele .................................................................................................... 3</td></tr><tr><td>1.2</td><td>Anwendungsbereich..................................................................................................... 3</td></tr><tr><td>1.3</td><td>Rollen, Verantwortlichkeitenund Abhängigkeiten ........................................................... 3</td></tr><tr><td>1.4</td><td>Anwendbare rechtliche und regulatorische Anforderungen............................................... 4</td></tr><tr><td>2</td><td>GENERELLE VORGABEN.............................................................................................. 4</td></tr><tr><td>3</td><td>PASSWÖRTER ............................................................................................................ 4</td></tr><tr><td>3.1</td><td>Vertraulichkeit und Nutzung.......................................................................................... 4</td></tr><tr><td>3.2</td><td>Eigenschaften von Passwörtern ..................................................................................... 5</td></tr><tr><td>3.3</td><td>Änderung von Passwörtern ........................................................................................... 6</td></tr><tr><td>3.4</td><td>Verfügbarkeit von Passwörtern...................................................................................... 7</td></tr><tr><td>3.5</td><td>Passwörter für Servicekonten auf externen Systemen ...................................................... 7</td></tr><tr><td>4</td><td>PERSONAL IDENTIFICATION NUMBERS(PINS) ............................................................ 8</td></tr><tr><td>5</td><td>WERKZEUGUNTERSTÜTZUNG FÜR DENUMGANG MIT PASSWÖRTERN...................... 8</td></tr><tr><td>5.1</td><td>Passwort Manager....................................................................................................... 8</td></tr><tr><td>5.2</td><td>Übertragung von Passwörtern ....................................................................................... 9</td></tr><tr><td>6</td><td>SECURITY-TOKEN ....................................................................................................... 9</td></tr><tr><td>6.1</td><td>Hardware-Token.......................................................................................................... 9</td></tr><tr><td>6.2</td><td>Software-Token ..........................................................................................................10</td></tr><tr><td>7</td><td>MELDUNGEN VONSICHERHEITSEREIGNISSENUND -VORFÄLLEN...............................11</td></tr><tr><td>8</td><td>REFERENZEN .............................................................................................................11</td></tr><tr><td>9</td><td>DOKUMENTHISTORIE................................................................................................11</td></tr></tbody></table>\n\nSection:1 Einleitung\n \n\n\nSection:1 Einleitung > 1.1 Motivation und Ziele\n \nDer Zugang zu IT-Systemen und Anwendungen und der Zugriff auf die darin verarbeiteten Daten wird über eine  personenbezogene Authentifizierung gesteuert. Für die Authentifizierung werden eine eindeutige Kennung des Benutzers (Benutzer- oder Kontoname) sowie ein oder mehrere Berechtigungsnachweise ('Credentials'), also Merkmale oder Faktoren benötigt, mit  denen die  digitale Identität eines Nutzers nachgewiesen werden kann. Zu diesen Merkmalen gehören unter anderem Passwörter, PINs, biometrische Daten oder personenbezogene Geheimnisse. Diese Merkmale bzw. Faktoren müssen besonders vor unbefugtem Zugriff geschützt werden, um die missbräuchliche Nutzung von Nutzerkonten und den zugehörigen Rechten durch unautorisierte Dritte zu verhindern.\n\nNeben der Authentisierung von Nutzern werden Passwörter auch ohne explizite Benutzerangabe verwendet, z.B. für den Zugriffsschutz von Dokumenten, Verschlüsselung von Daten, Zugriff auf individuelle Programme o.ä.\n\nDie in dieser Richtlinie enthaltenen verbindlichen Regelungen gelten allgemein für den Umgang mit Passwörtern und anderen Authentisierungsmitteln.\n\nSection:1 Einleitung > 1.2 Anwendungsbereich\n \nDiese Richtlinie für  den  Umgang mit Passwörtern gilt für die  gesamte KISTERS Gruppe sowie externe Dritte, die Authentisierungsinformationen für den Zugang zu KISTERS IT-Systemen oder den Zugriff auf KISTERS Daten benötigen.\n\nDiese Richtlinie ist Bestandteil der 'KISTERS Informationssicherheitsrichtlinie' [1]. Geltungsbereich, Verbindlichkeit, Terminologie, Ansprechpartner und weitere Informationen gelten entsprechend dem Hauptdokument.\n\nSection:1 Einleitung > 1.3 Rollen, Verantwortlichkeiten und Abhängigkeiten\n \n<table><tbody><tr><td></td><th>ISMT (1)</th><th>IT Administra- tion</th><th>Systemverant- wortliche (1)</th><th>Mitarbeiter</th><th>Externe Nutzer</th></tr><tr><th>Definition Passwort- richtlinien</th><td>A/R</td><td>I</td><td>I</td><td>I</td><td>I</td></tr><tr><th>Bereitstellung Pass- wortmanagementtools</th><td>A</td><td>R</td><td></td><td>I</td><td></td></tr><tr><th>Konfiguration IT-Sys- teme (2)</th><td>C</td><td>C</td><td>A/R</td><td>I</td><td>I</td></tr></tbody></table>\n\n- (1): Wie in der 'KISTERS Information Security Organization' definiert [2].\n- (2):  Soweit von  den  Systemen die  Konfiguration  und/oder  Überprüfung der Passwortrichtlinien unterstützt wird.\n\nSection:1 Einleitung > 1.4 Anwendbare rechtliche und regulatorische Anforderungen\n \nDie Erstellung einer Richtlinie für Passwörter und andere Autorisierungsinformationen ist eine Grundvoraussetzung für die Einhaltung von ISO 27001, SOC 2, BSI C5 und anderen Informationssicherheitsstandards [3]. In individuellen  Verträgen mit Kunden hat sich KISTERS verpflichtet, die Einhaltung eines oder mehrerer dieser Sicherheitsstandards oder gleichwertiger individueller Kundenanforderungen zu gewährleisten und aufrechtzuerhalten.\n\nDie Vorgaben dieser Richtlinie orientieren sich an anerkannten Standards zur Informationssicherheit [4], [5], [6], daher wurde keine gesonderte Risikobetrachtung durchgeführt.\n\nSection:2 Generelle Vorgaben\n \n[INFO] Viele IT-Systeme, Cloud-Dienste und Applikationen verlangen mindestens einen eindeutigen Benutzernamen und ein Passwort, unterstützen aber die optionale Nutzung von weiteren Faktoren für die Authentifizierung. Generell werden folgende Faktoren zur Authentisierung unterschieden:\n\n- · Wissensfaktor (was man weiß)\n- o Passwort, Passphrase, PIN ('Personal Identification Number'), etc.\n- · Besitzfaktor (was man besitzt)\n- o Authenticator-App auf Smartphone, gerätegebundene Telefonnummer, Chipkarte, Hardware-Token, TAN-/OTP-Generator ('Transaction Authentication Number' / 'One Time Password') , TAN-Liste, Personalausweis mit Online-Ausweisfunktion, etc.,\n- · Inhärenzfaktor (was man ist)\n- o Fingerabdruck, Irisabbild, Gesichtsabbild, Stimme, andere biometrische Daten.\n\nSection:Grundsätzlich gilt:\n \nSoweit technisch möglich MÜSSEN immer mindestens zwei Faktoren für die Authentifizierung von Nutzern verwendet werden.\n\nIm Folgenden werden die spezifischen Vorgaben für die Nutzung von Wissensfaktoren (Passwörter, PINs) und Besitzfaktoren (Software-, Hardware-Token) spezifiziert.\n\nSource 2:\nDocument_Name:ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf \nSection:5 Organizational controls > 5.12 Classification\tof\tinformation\n \n<table><tbody><tr><th>Control type</th><th>Information security properties</th><th>Cybersecurity concepts</th><th>Operational capabilities</th><th>Security domains</th></tr><tr><td>#Preventive</td><td>#Confidentiality #Integrity #Availability</td><td>#Identify</td><td>#Information_pro - tection</td><td>#Protection #Defence</td></tr></tbody></table>\n\nSource 3:\nDocument_Name:C5_2020.pdf \nSection:2 Aufbau und inhaltliche Gliederung der Kriterien > 2 Aufbau und inhaltliche Gliederung der Kriterien > 2.3 Zugrundeliegende Standards und Publikationen\n \nDie C5-Kriterien leiten sich aus Anforderungen ab, die aus national und international etablierten Standards und Publikationen entnommen wurden. Der Detaillierungsgrad geht dabei meist über diese Standards und Publikationen hinaus, um ein hohes Niveau an Transparenz über die Grundsätze, Verfahren und Maßnahmen der Cloud-Anbieter zu erreichen.\n\nIn diesen Kriterienkatalog sind Anforderungen aus den folgenden Standards und Publikationen eingeflossen:\n\n- ·  DIN EN ISO/IEC 27001:2017 - Informationssicherheitsmanagementsysteme - Anforderungen\n- ·  DIN ISO/IEC 27002:2016 - IT-Sicherheitsverfahren - Leitfaden für Informationssicherheits-Maßnahmen\n- ·  ISO/IEC 27017:2015 - Security techniques - Code of practice for information security controls based on ISO/IEC 27002 for cloud services\n- ·  BSI - IT-Grundschutz-Kompendium 2. Edition 2019\n- ·  CSA (Cloud Security Alliance, eine Non-Profit-Organisation zur Verbreitung von Sicherheitsstandards im Cloud Computing) - Cloud Controls Matrix 3.0.1 (CSA CCM)\n- ·  AICPA (American Institute of Certified Public Accountants, amerikanischer Berufsverband der Wirtschaftsprüfer) - Trust Services Criteria 2017 (TSC)\n- ·  ANSSI (Agence nationale de la sécurité des systèmes d'information, französische Behörde für die Sicherheit von Informationssystemen) - Prestataires de services d'informatique en nuage v. 3.1 (SecNumCloud)\n- ·  IDW (Institut der Wirtschaftsprüfer, die Interessenvertretung der wirtschaftsprüfenden Berufsstände in Deutschland) RS FAIT 5 - Stellungnahme zur Rechnungslegung: 'Grundsätze ordnungsmäßiger Buchführung bei Auslagerung von rechnungslegungsrelevanten Dienstleistungen einschließlich Cloud Computing', Stand vom 04.November 2015\n\nCloud-Anbietern, die sich bei der Gestaltung ihrer Grundsätze, Verfahren und Maßnahmen bereits an einem oder mehreren dieser Standards und Publikationen orientieren, können diese den C5-Kriterien zuordnen, um die Erfüllung zu beurteilen.\n\nDie Zuordnung wird durch Referenztabellen unterstützt, die das BSI auf seiner Webseite bereitstellt (https:/ /www.bsi.bund.de/C5). Die Referenztabellen sind als Hilfsmittel zu verstehen. Unabhängig von den darin enthaltenen Angaben ist stets im Einzelfall zu beurteilen, ob die eingerichteten Grundsätze, Verfahren und Maßnahmen geeignet sind, die C5-Kriterien zu erfüllen (vgl. Abschnitt 3.4.6).\n\n- 3 Nachweis der Konformität durch eine unabhängige Prüfung"] 
+ and length of list: 1
+INFO [utils_generation.py:255]:2025-09-23 15:10:35,166:Message to LLM before predict [ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. Below are several numbered sources of information:\n------\n\n------\nQuery: Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?')])]
+INFO [utils_generation.py:255]:2025-09-23 15:10:35,169:Message to LLM before predict [ChatMessage(role=<MessageRole.SYSTEM: 'system'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text="You are Kisters AI Assistant, a Large Language Model (LLM) created by Kisters AG, a German software company headquartered in Aachen.\n     Kisters AG is an international, environmental data & IT organisation which engineers data-driven and technology-led solutions.\n     The current date is 23-09-2025.\n     When you're not sure about some information then clearly state that you don't have the information and avoid making up anything.\n     You are always very attentive to dates, in particular you try to resolve dates (e.g. 'yesterday' is 22-09-2025) and when asked about information at specific dates, you discard information that is at another date.\n     You follow these instructions in all languages, and always respond to the user in the language they use or request.\n     You answer user questions about the security and compliance policies of KISTERS AG. The questions about security require a factual answer and needs to be grounded in the sources you recieve. Security is a sensitive topic and misinformation will be very bad for us.\n     Be concise in your answer. \n Below is your task:Please provide an answer based solely on the provided sources which contain the topic-subtopic name along with the content. When referencing information from a source, cite the appropriate source(s) using their corresponding numbers. Every answer should include at least one source citation. Only cite a source when you are explicitly referencing it. If none of the sources are helpful, you should indicate that. For example:\nSource 1:\n Sky > Colors of sky\nThe sky is red in the evening and blue in the morning.\nSource 2:\n Water > Water Wetness\nWater is wet when the sky is red.\nQuery: When is water wet?\nAnswer: Water will be wet when the sky is red according to Source 2, which occurs in the evening according to Source 1.\nNow it's your turn. Below are several numbered sources of information:\n------\nSource 1:\nDocument_Name:KISTERS_IS_PasswortRichtlinie.pdf \nSection:KISTERS Passwortrichtlinie Identitätsmanagement und Authentisierung\n \n## \n\nv.4.1, 2025-07-29\n\nVerantwortlich: KISTERS CISO\n\nSeite 1 / 12\n\nSection:Inhaltsverzeichnis\n \n<table><tbody><tr><td>1</td><td>EINLEITUNG ............................................................................................................... 3</td></tr><tr><td>1.1</td><td>Motivationund Ziele .................................................................................................... 3</td></tr><tr><td>1.2</td><td>Anwendungsbereich..................................................................................................... 3</td></tr><tr><td>1.3</td><td>Rollen, Verantwortlichkeitenund Abhängigkeiten ........................................................... 3</td></tr><tr><td>1.4</td><td>Anwendbare rechtliche und regulatorische Anforderungen............................................... 4</td></tr><tr><td>2</td><td>GENERELLE VORGABEN.............................................................................................. 4</td></tr><tr><td>3</td><td>PASSWÖRTER ............................................................................................................ 4</td></tr><tr><td>3.1</td><td>Vertraulichkeit und Nutzung.......................................................................................... 4</td></tr><tr><td>3.2</td><td>Eigenschaften von Passwörtern ..................................................................................... 5</td></tr><tr><td>3.3</td><td>Änderung von Passwörtern ........................................................................................... 6</td></tr><tr><td>3.4</td><td>Verfügbarkeit von Passwörtern...................................................................................... 7</td></tr><tr><td>3.5</td><td>Passwörter für Servicekonten auf externen Systemen ...................................................... 7</td></tr><tr><td>4</td><td>PERSONAL IDENTIFICATION NUMBERS(PINS) ............................................................ 8</td></tr><tr><td>5</td><td>WERKZEUGUNTERSTÜTZUNG FÜR DENUMGANG MIT PASSWÖRTERN...................... 8</td></tr><tr><td>5.1</td><td>Passwort Manager....................................................................................................... 8</td></tr><tr><td>5.2</td><td>Übertragung von Passwörtern ....................................................................................... 9</td></tr><tr><td>6</td><td>SECURITY-TOKEN ....................................................................................................... 9</td></tr><tr><td>6.1</td><td>Hardware-Token.......................................................................................................... 9</td></tr><tr><td>6.2</td><td>Software-Token ..........................................................................................................10</td></tr><tr><td>7</td><td>MELDUNGEN VONSICHERHEITSEREIGNISSENUND -VORFÄLLEN...............................11</td></tr><tr><td>8</td><td>REFERENZEN .............................................................................................................11</td></tr><tr><td>9</td><td>DOKUMENTHISTORIE................................................................................................11</td></tr></tbody></table>\n\nSection:1 Einleitung\n \n\n\nSection:1 Einleitung > 1.1 Motivation und Ziele\n \nDer Zugang zu IT-Systemen und Anwendungen und der Zugriff auf die darin verarbeiteten Daten wird über eine  personenbezogene Authentifizierung gesteuert. Für die Authentifizierung werden eine eindeutige Kennung des Benutzers (Benutzer- oder Kontoname) sowie ein oder mehrere Berechtigungsnachweise ('Credentials'), also Merkmale oder Faktoren benötigt, mit  denen die  digitale Identität eines Nutzers nachgewiesen werden kann. Zu diesen Merkmalen gehören unter anderem Passwörter, PINs, biometrische Daten oder personenbezogene Geheimnisse. Diese Merkmale bzw. Faktoren müssen besonders vor unbefugtem Zugriff geschützt werden, um die missbräuchliche Nutzung von Nutzerkonten und den zugehörigen Rechten durch unautorisierte Dritte zu verhindern.\n\nNeben der Authentisierung von Nutzern werden Passwörter auch ohne explizite Benutzerangabe verwendet, z.B. für den Zugriffsschutz von Dokumenten, Verschlüsselung von Daten, Zugriff auf individuelle Programme o.ä.\n\nDie in dieser Richtlinie enthaltenen verbindlichen Regelungen gelten allgemein für den Umgang mit Passwörtern und anderen Authentisierungsmitteln.\n\nSection:1 Einleitung > 1.2 Anwendungsbereich\n \nDiese Richtlinie für  den  Umgang mit Passwörtern gilt für die  gesamte KISTERS Gruppe sowie externe Dritte, die Authentisierungsinformationen für den Zugang zu KISTERS IT-Systemen oder den Zugriff auf KISTERS Daten benötigen.\n\nDiese Richtlinie ist Bestandteil der 'KISTERS Informationssicherheitsrichtlinie' [1]. Geltungsbereich, Verbindlichkeit, Terminologie, Ansprechpartner und weitere Informationen gelten entsprechend dem Hauptdokument.\n\nSection:1 Einleitung > 1.3 Rollen, Verantwortlichkeiten und Abhängigkeiten\n \n<table><tbody><tr><td></td><th>ISMT (1)</th><th>IT Administra- tion</th><th>Systemverant- wortliche (1)</th><th>Mitarbeiter</th><th>Externe Nutzer</th></tr><tr><th>Definition Passwort- richtlinien</th><td>A/R</td><td>I</td><td>I</td><td>I</td><td>I</td></tr><tr><th>Bereitstellung Pass- wortmanagementtools</th><td>A</td><td>R</td><td></td><td>I</td><td></td></tr><tr><th>Konfiguration IT-Sys- teme (2)</th><td>C</td><td>C</td><td>A/R</td><td>I</td><td>I</td></tr></tbody></table>\n\n- (1): Wie in der 'KISTERS Information Security Organization' definiert [2].\n- (2):  Soweit von  den  Systemen die  Konfiguration  und/oder  Überprüfung der Passwortrichtlinien unterstützt wird.\n\nSection:1 Einleitung > 1.4 Anwendbare rechtliche und regulatorische Anforderungen\n \nDie Erstellung einer Richtlinie für Passwörter und andere Autorisierungsinformationen ist eine Grundvoraussetzung für die Einhaltung von ISO 27001, SOC 2, BSI C5 und anderen Informationssicherheitsstandards [3]. In individuellen  Verträgen mit Kunden hat sich KISTERS verpflichtet, die Einhaltung eines oder mehrerer dieser Sicherheitsstandards oder gleichwertiger individueller Kundenanforderungen zu gewährleisten und aufrechtzuerhalten.\n\nDie Vorgaben dieser Richtlinie orientieren sich an anerkannten Standards zur Informationssicherheit [4], [5], [6], daher wurde keine gesonderte Risikobetrachtung durchgeführt.\n\nSection:2 Generelle Vorgaben\n \n[INFO] Viele IT-Systeme, Cloud-Dienste und Applikationen verlangen mindestens einen eindeutigen Benutzernamen und ein Passwort, unterstützen aber die optionale Nutzung von weiteren Faktoren für die Authentifizierung. Generell werden folgende Faktoren zur Authentisierung unterschieden:\n\n- · Wissensfaktor (was man weiß)\n- o Passwort, Passphrase, PIN ('Personal Identification Number'), etc.\n- · Besitzfaktor (was man besitzt)\n- o Authenticator-App auf Smartphone, gerätegebundene Telefonnummer, Chipkarte, Hardware-Token, TAN-/OTP-Generator ('Transaction Authentication Number' / 'One Time Password') , TAN-Liste, Personalausweis mit Online-Ausweisfunktion, etc.,\n- · Inhärenzfaktor (was man ist)\n- o Fingerabdruck, Irisabbild, Gesichtsabbild, Stimme, andere biometrische Daten.\n\nSection:Grundsätzlich gilt:\n \nSoweit technisch möglich MÜSSEN immer mindestens zwei Faktoren für die Authentifizierung von Nutzern verwendet werden.\n\nIm Folgenden werden die spezifischen Vorgaben für die Nutzung von Wissensfaktoren (Passwörter, PINs) und Besitzfaktoren (Software-, Hardware-Token) spezifiziert.\n\nSource 2:\nDocument_Name:ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf \nSection:5 Organizational controls > 5.12 Classification\tof\tinformation\n \n<table><tbody><tr><th>Control type</th><th>Information security properties</th><th>Cybersecurity concepts</th><th>Operational capabilities</th><th>Security domains</th></tr><tr><td>#Preventive</td><td>#Confidentiality #Integrity #Availability</td><td>#Identify</td><td>#Information_pro - tection</td><td>#Protection #Defence</td></tr></tbody></table>\n\nSource 3:\nDocument_Name:C5_2020.pdf \nSection:2 Aufbau und inhaltliche Gliederung der Kriterien > 2 Aufbau und inhaltliche Gliederung der Kriterien > 2.3 Zugrundeliegende Standards und Publikationen\n \nDie C5-Kriterien leiten sich aus Anforderungen ab, die aus national und international etablierten Standards und Publikationen entnommen wurden. Der Detaillierungsgrad geht dabei meist über diese Standards und Publikationen hinaus, um ein hohes Niveau an Transparenz über die Grundsätze, Verfahren und Maßnahmen der Cloud-Anbieter zu erreichen.\n\nIn diesen Kriterienkatalog sind Anforderungen aus den folgenden Standards und Publikationen eingeflossen:\n\n- ·  DIN EN ISO/IEC 27001:2017 - Informationssicherheitsmanagementsysteme - Anforderungen\n- ·  DIN ISO/IEC 27002:2016 - IT-Sicherheitsverfahren - Leitfaden für Informationssicherheits-Maßnahmen\n- ·  ISO/IEC 27017:2015 - Security techniques - Code of practice for information security controls based on ISO/IEC 27002 for cloud services\n- ·  BSI - IT-Grundschutz-Kompendium 2. Edition 2019\n- ·  CSA (Cloud Security Alliance, eine Non-Profit-Organisation zur Verbreitung von Sicherheitsstandards im Cloud Computing) - Cloud Controls Matrix 3.0.1 (CSA CCM)\n- ·  AICPA (American Institute of Certified Public Accountants, amerikanischer Berufsverband der Wirtschaftsprüfer) - Trust Services Criteria 2017 (TSC)\n- ·  ANSSI (Agence nationale de la sécurité des systèmes d'information, französische Behörde für die Sicherheit von Informationssystemen) - Prestataires de services d'informatique en nuage v. 3.1 (SecNumCloud)\n- ·  IDW (Institut der Wirtschaftsprüfer, die Interessenvertretung der wirtschaftsprüfenden Berufsstände in Deutschland) RS FAIT 5 - Stellungnahme zur Rechnungslegung: 'Grundsätze ordnungsmäßiger Buchführung bei Auslagerung von rechnungslegungsrelevanten Dienstleistungen einschließlich Cloud Computing', Stand vom 04.November 2015\n\nCloud-Anbietern, die sich bei der Gestaltung ihrer Grundsätze, Verfahren und Maßnahmen bereits an einem oder mehreren dieser Standards und Publikationen orientieren, können diese den C5-Kriterien zuordnen, um die Erfüllung zu beurteilen.\n\nDie Zuordnung wird durch Referenztabellen unterstützt, die das BSI auf seiner Webseite bereitstellt (https:/ /www.bsi.bund.de/C5). Die Referenztabellen sind als Hilfsmittel zu verstehen. Unabhängig von den darin enthaltenen Angaben ist stets im Einzelfall zu beurteilen, ob die eingerichteten Grundsätze, Verfahren und Maßnahmen geeignet sind, die C5-Kriterien zu erfüllen (vgl. Abschnitt 3.4.6).\n\n- 3 Nachweis der Konformität durch eine unabhängige Prüfung\n------\nQuery: Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?\nAnswer: ")]), ChatMessage(role=<MessageRole.USER: 'user'>, additional_kwargs={}, blocks=[TextBlock(block_type='text', text='Welche Kriterien der ISO27002 werden von der Richtlinie zu Passwörtern abgedeckt?')])]
+INFO [config.py:54]:2025-09-23 15:10:56,549:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:10:58,535:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:10:59,251: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:10:59,286:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:10:59,297:TIMING: Wall:    2.5ms | CPU:   10.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:10:59,299:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:10:59,309: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:10:59,312:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:10:59,321: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:10:59,646: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:10:59,648:TIMING: Wall:  330.3ms | CPU:  330.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:10:59,649:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:10:59,657: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:10:59,662:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:10:59,668: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:11:00,007:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:11:00,008:TIMING: Wall:  340.7ms | CPU:  340.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:11:00,009:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:00,019: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:00,024:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:11:00,378: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:11:00,722: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:11:00,724:TIMING: Wall:  347.3ms | CPU:  350.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:11:00,725:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:11:00,732:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:11:00,738: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:00,741:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:00,748:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:00,748:TIMING: Wall:    3.1ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:11:00,749:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,176: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,178:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,187:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,188:TIMING: Wall:    5.0ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:11:01,190:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,208: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,212:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,218:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,219:TIMING: Wall:    3.7ms | CPU:   10.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:11:01,220:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,236: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,240:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,247:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,248:TIMING: Wall:    4.1ms | CPU:   10.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:11:01,249:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,272: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,276:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,284:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,285:TIMING: Wall:    2.7ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:11:01,287:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,302: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,307:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,313:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,314:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:11:01,314:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,331: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,334:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,341:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,342:TIMING: Wall:    2.4ms | CPU:   10.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:11:01,342:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,361: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,365:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,377:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,378:TIMING: Wall:    5.9ms | CPU:    0.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:11:01,379:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,397: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,401:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:11:01,412:TIMING: Wall:    5.0ms | CPU:    0.0ms | <Path: /change_collection/conv-1$bob>
+INFO [_client.py:1038]:2025-09-23 15:11:01,413:HTTP Request: POST http://testserver/change_collection/conv-1$bob "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:11:01,433: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,437:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:11:01,445:TIMING: Wall:    1.1ms | CPU:    0.0ms | <Path: /conversation/conv-1$bob/file_name>
+INFO [_client.py:1038]:2025-09-23 15:11:01,447:HTTP Request: POST http://testserver/conversation/conv-1$bob/file_name "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:11:01,465: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,468:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,475:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,477:TIMING: Wall:    3.6ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:11:01,478:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,495: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,500:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,507:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,509:TIMING: Wall:    3.3ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:11:01,510:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,526: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,529:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:11:01,537:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:11:01,538:TIMING: Wall:    3.3ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:11:01,539:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:11:01,563: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:11:01,567:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:11:01,576:TIMING: Wall:    4.3ms | CPU:   10.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:11:01,577:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [_client.py:1786]:2025-09-23 15:12:09,085:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO [utils_LLM.py:264]:2025-09-23 15:12:09,541:Creating citations for session: aff7a446-a689-4d20-b0aa-0326a03fd033
+INFO [utils_LLM.py:270]:2025-09-23 15:12:09,544:Citation dict for the response: {'Source 1': ('fd6c1a1d68197f65661ca7c7d1ed2ed8e9cf3cbc738a53bbd9cd2057da3a2427', [1, 2, 3, 4], 'KISTERS Passwortrichtlinie Identitätsmanagement und Authentisierung AND Inhaltsverzeichnis AND 1 Einleitung AND 1 Einleitung > 1.1 Motivation und Ziele AND 1 Einleitung > 1.2 Anwendungsbereich AND 1 Einleitung > 1.3 Rollen, Verantwortlichkeiten und Abhängigkeiten AND 1 Einleitung > 1.4 Anwendbare rechtliche und regulatorische Anforderungen AND 2 Generelle Vorgaben AND Grundsätzlich gilt:', 'KISTERS_IS_PasswortRichtlinie.pdf'), 'Source 2': ('120898d1de7720cf8c5180536a983edce0731b1c233af5932d2be1f9c8051987', [32], '5 Organizational controls > 5.12 Classification\tof\tinformation', 'ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf'), 'Source 3': ('93e4d583961bd2c70399cc7ca08dfc024131b93f120dcb3cd38c488c29a4eec3', [20, 21], '2 Aufbau und inhaltliche Gliederung der Kriterien > 2 Aufbau und inhaltliche Gliederung der Kriterien > 2.3 Zugrundeliegende Standards und Publikationen', 'C5_2020.pdf')}
+INFO [timing.py:139]:2025-09-23 15:12:10,086:TIMING: Wall: 141228.7ms | CPU: 491120.0ms | timing.app.main.add_message
+INFO [timing.py:139]:2025-09-23 15:12:46,953:TIMING: Wall:   12.9ms | CPU:   10.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:46,954:TIMING: Wall:    8.6ms | CPU:   10.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:46,955:TIMING: Wall:   12.3ms | CPU:   10.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:46,956:TIMING: Wall:   13.5ms | CPU:   10.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:51,690:TIMING: Wall:    1.4ms | CPU:    0.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:51,841:TIMING: Wall:    0.3ms | CPU:    0.0ms | <Path: /favicon.ico>
+INFO [timing.py:139]:2025-09-23 15:12:55,665:TIMING: Wall:    0.8ms | CPU:    0.0ms | StaticFiles<'doc_store'>
+INFO [timing.py:139]:2025-09-23 15:12:56,663:TIMING: Wall:    0.9ms | CPU:    0.0ms | StaticFiles<'doc_store'>
+INFO [config.py:54]:2025-09-23 15:16:23,208:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:16:24,037:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:16:24,446: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:24,449:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:24,454:TIMING: Wall:    2.2ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:16:24,454:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:16:24,460: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:24,462:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:16:24,466: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:16:24,650: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:16:24,651:TIMING: Wall:  186.1ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:16:24,652:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:16:24,656: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:24,657:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:16:24,659: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:16:24,844:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:16:24,845:TIMING: Wall:  186.5ms | CPU:  190.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:16:24,845:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:24,849: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:24,851:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:16:25,034: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:16:25,215: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:16:25,216:TIMING: Wall:  181.5ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:16:25,216:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:16:25,219:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:16:25,222: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,223:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,227:TIMING: Wall:    1.1ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:16:25,227:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,232: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,234:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,237:TIMING: Wall:    1.2ms | CPU:   10.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:16:25,238:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,242: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,243:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,247:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:16:25,248:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,251: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,253:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,257:TIMING: Wall:    1.6ms | CPU:    0.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:16:25,257:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,262: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,264:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,268:TIMING: Wall:    1.0ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:16:25,268:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,271: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,273:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,276:TIMING: Wall:    1.4ms | CPU:   10.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:16:25,276:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,281: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,283:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,288:TIMING: Wall:    2.5ms | CPU:    0.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:16:25,288:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,291: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,293:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,298:TIMING: Wall:    1.4ms | CPU:    0.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:16:25,298:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,303: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,304:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,307:TIMING: Wall:    0.2ms | CPU:   10.0ms | <Path: /change_collection/conv-1$bob>
+INFO [_client.py:1038]:2025-09-23 15:16:25,307:HTTP Request: POST http://testserver/change_collection/conv-1$bob "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:16:25,444: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,445:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,448:TIMING: Wall:    0.2ms | CPU:    0.0ms | <Path: /conversation/conv-1$bob/file_name>
+INFO [_client.py:1038]:2025-09-23 15:16:25,448:HTTP Request: POST http://testserver/conversation/conv-1$bob/file_name "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:16:25,457: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,459:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,463:TIMING: Wall:    1.0ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:16:25,463:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,468: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,470:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,473:TIMING: Wall:    0.9ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:16:25,473:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,477: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,480:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,484:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:16:25,484:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,488: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,489:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:16:25,492:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:16:25,492:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,498: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,499:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:16:25,503:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:16:25,503:TIMING: Wall:    1.5ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:16:25,503:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:16:25,508: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:16:25,510:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:16:25,515:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:16:25,515:TIMING: Wall:    1.9ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:16:25,516:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [config.py:54]:2025-09-23 15:19:14,536:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:19:15,386:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:19:15,790: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:15,794:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:15,799:TIMING: Wall:    1.1ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:19:15,799:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:19:15,805: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:15,807:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:19:15,811: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:19:15,993: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:19:15,993:TIMING: Wall:  183.5ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:19:15,994:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:19:15,999: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,000:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:19:16,005: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:19:16,187:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:19:16,187:TIMING: Wall:  182.9ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:19:16,188:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,192: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,193:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:19:16,376: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:19:16,554: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:19:16,554:TIMING: Wall:  178.5ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:19:16,555:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:19:16,558:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:19:16,559: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,561:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,564:TIMING: Wall:    1.1ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:19:16,564:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,568: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,571:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,576:TIMING: Wall:    2.6ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:19:16,577:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,581: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,583:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,587:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:19:16,587:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,592: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,594:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,597:TIMING: Wall:    1.2ms | CPU:   10.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:19:16,597:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,601: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,603:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,608:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:19:16,609:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,613: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,615:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,618:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:19:16,618:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,624: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,626:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,629:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:19:16,630:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,633: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,635:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,638:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:19:16,639:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,643: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,645:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,647:TIMING: Wall:    0.4ms | CPU:    0.0ms | <Path: /change_collection/conv-1$bob>
+INFO [_client.py:1038]:2025-09-23 15:19:16,647:HTTP Request: POST http://testserver/change_collection/conv-1$bob "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:19:16,784: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,786:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,788:TIMING: Wall:    0.3ms | CPU:    0.0ms | <Path: /conversation/conv-1$bob/file_name>
+INFO [_client.py:1038]:2025-09-23 15:19:16,788:HTTP Request: POST http://testserver/conversation/conv-1$bob/file_name "HTTP/1.1 404 Not Found"
+INFO [main.py:75]:2025-09-23 15:19:16,797: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,798:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,801:TIMING: Wall:    0.9ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:19:16,802:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,807: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,809:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,813:TIMING: Wall:    1.1ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:19:16,813:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,817: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,819:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,823:TIMING: Wall:    2.0ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:19:16,823:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,828: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,829:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:19:16,832:TIMING: Wall:    1.0ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:19:16,833:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,837: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,839:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:19:16,842:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:19:16,843:TIMING: Wall:    1.4ms | CPU:   10.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:19:16,843:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:19:16,848: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:19:16,849:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:19:16,853:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:19:16,853:TIMING: Wall:    1.6ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:19:16,854:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [config.py:54]:2025-09-23 15:23:08,910:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 15:23:09,730:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 15:23:10,148: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,151:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,156:TIMING: Wall:    2.5ms | CPU:   10.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 15:23:10,157:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:23:10,161: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,163:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:23:10,167: Validating: test_user
+INFO [main.py:159]:2025-09-23 15:23:10,354: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 15:23:10,355:TIMING: Wall:  189.3ms | CPU:  190.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:23:10,356:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 15:23:10,361: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,363:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:23:10,366: Validating: test_user
+INFO [main.py:157]:2025-09-23 15:23:10,548:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 15:23:10,549:TIMING: Wall:  183.4ms | CPU:  190.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:23:10,549:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,553: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,555:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 15:23:10,736: Validating: new_user
+INFO [main.py:159]:2025-09-23 15:23:10,915: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 15:23:10,916:TIMING: Wall:  179.9ms | CPU:  180.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 15:23:10,916:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 15:23:10,919:JWT decode failed: Not enough segments
+INFO [main.py:75]:2025-09-23 15:23:10,921: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,922:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,925:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:23:10,925:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,929: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,932:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,937:TIMING: Wall:    1.5ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:23:10,937:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,941: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,943:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,946:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.add_message
+INFO [_client.py:1038]:2025-09-23 15:23:10,947:HTTP Request: POST http://testserver/conversation/conv-1$bob/message "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,951: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,953:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,957:TIMING: Wall:    1.5ms | CPU:    0.0ms | timing.app.main.log_feedback
+INFO [_client.py:1038]:2025-09-23 15:23:10,957:HTTP Request: POST http://testserver/log_feedback/ "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,961: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,963:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,966:TIMING: Wall:    1.4ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [_client.py:1038]:2025-09-23 15:23:10,967:HTTP Request: GET http://testserver/get_existing_conv_ids/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,971: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,973:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,977:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.get_docs
+INFO [_client.py:1038]:2025-09-23 15:23:10,978:HTTP Request: GET http://testserver/get_user_available_docs_check_admin/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,982: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,983:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,989:TIMING: Wall:    2.5ms | CPU:    0.0ms | timing.app.main.get_conversation
+INFO [_client.py:1038]:2025-09-23 15:23:10,989:HTTP Request: POST http://testserver/get_conversation/conv-1$bob "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:10,993: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:10,995:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:10,998:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.ingest_file_frontend
+INFO [_client.py:1038]:2025-09-23 15:23:10,998:HTTP Request: POST http://testserver/ingest_doc_frontend/conv-1$bob/file_name "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,004: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,006:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:11,009:TIMING: Wall:    1.1ms | CPU:    0.0ms | timing.app.main.create_collection
+INFO [_client.py:1038]:2025-09-23 15:23:11,009:HTTP Request: POST http://testserver/create_collection/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,013: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,015:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:11,018:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.get_vector_db
+INFO [_client.py:1038]:2025-09-23 15:23:11,019:HTTP Request: GET http://testserver/internal_get_vectordb/test_collection "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,025: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,027:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:11,030:TIMING: Wall:    1.3ms | CPU:    0.0ms | timing.app.main.logout
+INFO [_client.py:1038]:2025-09-23 15:23:11,031:HTTP Request: POST http://testserver/logout "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,035: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,037:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 15:23:11,041:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:23:11,041:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,044: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,046:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:23:11,049:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:23:11,049:TIMING: Wall:    1.2ms | CPU:    0.0ms | timing.app.main.create_user
+INFO [_client.py:1038]:2025-09-23 15:23:11,049:HTTP Request: POST http://testserver/create_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 15:23:11,054: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 15:23:11,056:Initiating expired session cleanup in Redis
+WARNING [utils_auth.py:111]:2025-09-23 15:23:11,059:JWT decode failed: Not enough segments
+INFO [timing.py:139]:2025-09-23 15:23:11,060:TIMING: Wall:    1.5ms | CPU:    0.0ms | timing.app.main.start_conversation
+INFO [_client.py:1038]:2025-09-23 15:23:11,060:HTTP Request: POST http://testserver/conversation/start "HTTP/1.1 401 Unauthorized"

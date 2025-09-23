@@ -102,3 +102,179 @@ def test_get_current_user_valid_claims():
     assert user.username == "alice"
     assert user.admin is True
     assert user.collections == ["sales"]
+
+
+@pytest.mark.parametrize(
+    "method,url,kwargs,expected_status,expected_detail",
+    [
+        (
+            "post",
+            "/create_user",
+            {
+                "json": {
+                    "username": "bob",
+                    "fullname": "Bob Test",
+                    "password": "secret123",
+                    "disabled": False,
+                    "admin": False,
+                }
+            },
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/conversation/start",
+            {
+                "json": {
+                    "conv_id": "conv-1",
+                    "username": "bob",
+                    "password": "secret123",
+                }
+            },
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/conversation/conv-1$bob/message",
+            {"json": {"conv_id": "conv-1", "message": "hello"}},
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/log_feedback/",
+            {
+                "json": {
+                    "conv_id": "conv-1",
+                    "username": "bob",
+                    "LLM_response": "response",
+                    "feedback": "Positive",
+                    "feedback_comment": "nice",
+                }
+            },
+            401,
+            "Not authenticated",
+        ),
+        (
+            "get",
+            "/get_existing_conv_ids/conv-1$bob",
+            {},
+            401,
+            "Not authenticated",
+        ),
+        (
+            "get",
+            "/get_user_available_docs_check_admin/conv-1$bob",
+            {},
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/get_conversation/conv-1$bob",
+            {
+                "json": {
+                    "old_conv_id": "conv-1",
+                    "new_conv_id": "conv-2",
+                    "username": "bob",
+                }
+            },
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/ingest_doc_frontend/conv-1$bob/file_name",
+            {
+                "json": {
+                    "conv_id": "conv-1",
+                    "file": "/tmp/file.pdf",
+                    "ingest_collection": "support",
+                }
+            },
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/create_collection/test_collection",
+            {},
+            401,
+            "Not authenticated",
+        ),
+        (
+            "get",
+            "/internal_get_vectordb/test_collection",
+            {},
+            401,
+            "Not authenticated",
+        ),
+        (
+            "post",
+            "/logout",
+            {
+                "json": {"conv_id": "conv-1", "user": "bob"},
+            },
+            401,
+            "Not authenticated",
+        ),
+    ],
+)
+def test_protected_endpoints_require_authentication(test_client, method, url, kwargs, expected_status, expected_detail):
+    response = getattr(test_client, method)(url, **kwargs)
+    assert response.status_code == expected_status
+    assert response.json()["detail"] == expected_detail
+
+
+def test_protected_endpoint_rejects_missing_header(test_client):
+    response = test_client.post(
+        "/create_user",
+        json={
+            "username": "charlie",
+            "fullname": "Charlie",
+            "password": "secret123",
+            "disabled": False,
+            "admin": False,
+        },
+    )
+    assert response.status_code == 401
+    assert response.json()["detail"] == "Not authenticated"
+
+
+@pytest.mark.parametrize(
+    "method,url,kwargs",
+    [
+        (
+            "post",
+            "/create_user",
+            {
+                "json": {
+                    "username": "dave",
+                    "fullname": "Dave",
+                    "password": "secret123",
+                    "disabled": False,
+                    "admin": False,
+                },
+                "headers": {"Authorization": "Bearer invalid"},
+            },
+        ),
+        (
+            "post",
+            "/conversation/start",
+            {
+                "json": {
+                    "conv_id": "conv-x",
+                    "username": "dave",
+                    "password": "secret123",
+                },
+                "headers": {"Authorization": "Bearer invalid"},
+            },
+        ),
+    ],
+)
+def test_protected_endpoints_invalid_token(test_client, method, url, kwargs):
+    response = getattr(test_client, method)(url, **kwargs)
+    assert response.status_code == 401
+    assert response.json()["detail"] == "Invalid or expired token"
