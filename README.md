@@ -1,52 +1,61 @@
-# Local deployment in WSL
+# Crispy Octo Dollop
 
+Retrieval-augmented generation stack with a FastAPI backend, Milvus as vector store, Redis for session state, plus a Gradio frontend and CLI. LLM serving (Ollama or vLLM) and ingestion pipelines run inside Apptainer containers.
 
+## Overview
+- **Backend**: FastAPI (`app/main.py`) handles authentication, retrieval, and ingestion workflows.
+- **Vector DB**: Milvus 2.5.2 with role-based access control.
+- **LLM serving**: Ollama or vLLM via Apptainer images.
+- **Frontend**: Gradio UI and a companion CLI (`CLI.py`).
+- **Authentication**: JWT access tokens; every write endpoint requires an `Authorization: Bearer` header.
 
-# Prerequisites
+## Prerequisites
+- Windows with WSL2 (Ubuntu) or a native Linux host.
+- Apptainer/Singularity for container builds.
+- Python ≥ 3.12.
 
-1. Having WSL installed and ready
-2. Clone the repo with ssh. Follow: https://docs.gitlab.com/topics/git/clone/#clone-with-ssh for more info. 
-3. Go to the created directory in VScode and create a new branch. Follow tutorial: https://www.geeksforgeeks.org/git/how-to-create-a-new-branch-in-git/ for more info.
+See [`installation.md`](installation.md) for a detailed setup walkthrough.
 
-# 1. Installing WSL2 on windows 
+## Quick Start
+1. **Install dependencies**
+   - Create a virtual environment and install requirements (see `installation.md`).
+   - Configure `app/dev.env` and `frontend_gradio/utils/dev_frontend.env` (paths, ports, secrets, JWT settings).
+2. **Build container images**
+   - Build/pull Apptainer images for Milvus, FastAPI, Redis, Gradio, and Ollama.
+3. **Launch services**
+   ```bash
+   sudo bash script_milvus.sh      # Milvus + dependencies
+   bash script_backend.sh          # FastAPI / Redis
+   bash script_frontend.sh         # CLI / Gradio
+   ```
+4. **Authenticate and obtain a token**
+   - CLI: `validate <username>` prompts for the password and stores the returned JWT.
+   - REST: `POST /validate_user/{username}` with `{ "username": "…", "password": "…" }` returns `{ "access_token": …, "token_type": "bearer" }`.
+5. **Call protected endpoints**
+   - Include `Authorization: Bearer <token>` in every subsequent request.
+   - The CLI adds the header automatically after a successful login.
 
-Open windows powershell in adminstrator mode and then type: wsl --install. Once installed, restart system. For more details follow: https://learn.microsoft.com/de-de/windows/wsl/install
+## Authentication & Roles
+- Tokens embed `admin` and `collections` claims and expire after 180 minutes by default (`ACCESS_TOKEN_EXPIRE_MINUTES`).
+- Admins can create users via the CLI (`create`) or `POST /create_user`; non-admins receive HTTP 403.
+- User-to-collection mappings live in `app/user_collection_db.json` and are cached in Redis when sessions start.
 
-# 2. Install required libraries
+## Typical CLI Flow
+1. `validate <username>` – authenticate and store the token.
+2. `chat <message>` – send messages with the stored Bearer token.
+3. `create` – admin-only, provisions Milvus roles for the new user.
+4. `quit` – calls `/logout` with the Bearer header and exits the session.
 
-1. Open a virtual environment (.venv) in the repository. 
-2. Install the required libraries for both backend (requirements.txt) & frontend (requirements_frontend.txt) using the commands:<br>
-    `pip install -r requirements.txt` and `pip install -r requirements_frontend.txt`
+## Unversioned Assets
+- `app/dev.env` (local secrets)
+- `frontend_gradio/utils/dev_frontend.env`
+- `data/` directory containing source PDFs
+- Optional Milvus configuration under `milvus_configs/`
 
-# 3. Install the required containers 
+## Testing & Quality
+- Sanity-check modules with `python3 -m compileall app`.
+- Add unit/integration tests for JWT validation and protected endpoints (see `TODO.md`).
 
-5 containers need to be installed: 
-1. fastapi_container.sif (rebuild every time a new package is to be included in requirements.txt)
-2. gradio.sif (rebuild if new package is to be included in requirements_frontend.txt)
-3. redis.sif (for state management with fastapi)
-4. ollama.sif for model serving (swap for vllm-openai_v0.9.1.sif in HPC)
-5. milvus.v2.5.2.sif (for vectorDB backend)
-
-1, 2 and 3 can be built using:<br>
-`apptainer build {container_name} container_recipes/{container_recipe}` where container_recipe is either of
-fastapi_recipe.def, gradio.def or redis.def.
-
-For ollama and milvus containers, refer to _Apptainer_configs.docx_ file provided. 
-
-# 4. Starting the webapplication and creating User IDs
-1. Run the scripts for deployment of models, Redis, FastAPI backend and milvus vectorDB using the commands <br>
-`sudo bash script_milvus.sh` and `bash script_backend.sh`
-2. Update _script_frontend.sh_ to call the _start_CLI_ function in the last line (CLI is needed to create user ids and admin roles, rest can be done through gradio frontend)
-3. Run `bash script_frontend.sh` to start the CLI and create a user profile with username, full name and password using `create` command (recommend to create names in same format as the ones used in HPC)
-4. Assignment of user accounts to collections (existing or new) takes place using _assign_user_collection(user, collection)_ function in _helper_scripts/backend_admin.py_ which updates the _user_collection_db.json_ db.
-
-# 5. Run gradio webapp
-1. Update _script_frontend.sh_ to call the _start_gradio_ function in the last line. 
-2. Run `bash script_frontend.sh` to start frontend (provided script_milvus and script_backend are already running). 
-3. Go to http://localhost:8083/ to login using the created user id.
-
-
-## Files not present in repo but need to be transferred to make app work
-1. app/dev.env
-2. _data_ folder with the pdfs to ingest 
-3. frontend_gradio/utils/dev_frontend.env
+## Further Reading
+- Admin helpers: `helper_scripts/` for managing users and collections.
+- Roadmap: [`TODO.md`](TODO.md) for GraphRAG integration and security tasks.

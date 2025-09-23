@@ -12,6 +12,8 @@ from app.utils.utils_auth import (
     load_json,
     user_auth_validate,
     create_jwt_token,
+    decode_jwt_token,
+    AuthenticatedUser,
 )
 from app.utils.utils_backend import deserialize, cleanup_expired_sessions, check_chat_history_db, check_empty_chats
 from app.utils.utils_ingestion import FileUploadValidator, milvus_db_as_excel, ingest, get_doc_in_collection, check_admin
@@ -20,6 +22,7 @@ from app.utils.utils_req_templates import session_start_req, Message_request, In
 from contextlib import asynccontextmanager
 from fastapi import Depends
 from fastapi import FastAPI, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi_utils.timing import add_timing_middleware
@@ -39,6 +42,7 @@ import os
 import pickle
 import shutil
 import pandas as pd
+import jwt
 
 # logging config
 initialize_logging(BACKEND_FASTAPI_LOG)
@@ -46,6 +50,20 @@ initialize_logging(BACKEND_FASTAPI_LOG)
 #global variables
 MODEL = os.getenv("MODEL", "llama3.2")
 validator = FileUploadValidator(max_size_mb=50)
+
+# Security dependency
+bearer_scheme = HTTPBearer(auto_error=False)
+
+# pivotal functionality for all following functions
+def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme)) -> AuthenticatedUser:
+    if credentials is None or credentials.scheme.lower() != "bearer":
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    token = credentials.credentials
+    try:
+        return decode_jwt_token(token)
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
 
 
 @asynccontextmanager
@@ -101,9 +119,14 @@ def health() -> Dict[str, str]:
 
 
 @app.post("/create_user")
-async def create_user(request : user_auth_format):
+async def create_user(
+    request: user_auth_format,
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ Create new user account by putting the data sent to API into an existing json using write_json function
     """
+    if not current_user.admin:
+        raise HTTPException(status_code=403, detail="Insufficient permissions")
     logger.info(" Creating user: %s", request.username)
     user_details= {"username": request.username,
         "full_name": request.fullname,
@@ -137,13 +160,20 @@ async def validate_user(request: user_auth_validate):
     return {"access_token": token, "token_type": "bearer"}
 
 @app.post("/conversation/start")
-async def start_conversation(request: session_start_req, redis: Redis = Depends(lambda: app.state.redis)):
+async def start_conversation(
+    request: session_start_req,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ This function does initializations at the start of conversation. 
         The state variables that are stored by redis include:
         1. User history path and chat store paths
         2. conversations tracker which is updated at the start and updates the db stored in user history path. It keeps track of which user-conversation id is the current api call for
         3. session data: for a particular session id, store as a hash the user, passwrd, chat store object and citation engine object for later use
     """
+    if request.username != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Cannot start session for another user")
+
     logger.info(" Initializing session: %s for user %s", request.conv_id, request.username)
     conversations= await redis.get("conversations")
     conversations_dict= json.loads(conversations)
@@ -191,12 +221,19 @@ async def start_conversation(request: session_start_req, redis: Redis = Depends(
     return {"message": f"Conversation {request.conv_id} started", "user_collection": user_collection_db[request.username]}
 
 @app.post("/conversation/{session_id_user}/message")
-async def add_message(session_id_user:str, request: Message_request, redis: Redis = Depends(lambda: app.state.redis)) -> str:
+async def add_message(
+    session_id_user: str,
+    request: Message_request,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+) -> str:
     """ This function for a particular conversation id, sends the message to the "Chat engine" LLM object which generates the response and updates the chat memory.
         Then it returns the response back to API and saves the updated chat store locally. 
     """
     logger.info(" User message to bot for session: %s, message:%s", request.conv_id, request.message)
     user_name_current= session_id_user.split("$")[1]
+    if user_name_current != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     conversations= await redis.get("conversations")
     conversations_dict= json.loads(conversations)
     if request.conv_id not in conversations_dict[user_name_current]:
@@ -249,7 +286,11 @@ async def add_message(session_id_user:str, request: Message_request, redis: Redi
 
 
 @app.post("/log_feedback/")
-async def log_feedback(request: feedback_model, redis: Redis = Depends(lambda: app.state.redis)):
+async def log_feedback(
+    request: feedback_model,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ Log feedback for each LLM response in the correponding user log excel
 
     Args:
@@ -259,6 +300,8 @@ async def log_feedback(request: feedback_model, redis: Redis = Depends(lambda: a
     """
     conv_id= request.conv_id
     user_name_current= request.username
+    if user_name_current != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized access")
     logger.info("Logging user: %s feedback for session: %s", user_name_current, conv_id)
     retrieval_path= RETRIEVAL_LOG_PATH.format(user= user_name_current)
     # filter citation from llm response to match it with the LLM response in the logs
@@ -278,11 +321,17 @@ async def log_feedback(request: feedback_model, redis: Redis = Depends(lambda: a
 
 
 @app.get("/get_existing_conv_ids/{session_id_user}")
-async def get_existing_conv_id(session_id_user: str, redis: Redis = Depends(lambda: app.state.redis)) -> list:
+async def get_existing_conv_id(
+    session_id_user: str,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+) -> list:
     """ Return existing conversation ids after checking if they exist in chat history
     """
     new_conv_id= session_id_user.split("$")[0]
     user= session_id_user.split("$")[1]
+    if user != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     init_conversation_list= await redis.get("conversations")
     init_conversation_list= json.loads(init_conversation_list)
     if new_conv_id not in init_conversation_list[user]:
@@ -301,7 +350,11 @@ async def get_existing_conv_id(session_id_user: str, redis: Redis = Depends(lamb
     return final_user_conv_id
 
 @app.get("/get_user_available_docs_check_admin/{session_id_user}")
-async def get_docs(session_id_user: str, redis: Redis = Depends(lambda: app.state.redis)):
+async def get_docs(
+    session_id_user: str,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ For a session, user, collection: get all the documents present in the collection 
     Also return True if the user has admin access. 
 
@@ -311,6 +364,8 @@ async def get_docs(session_id_user: str, redis: Redis = Depends(lambda: app.stat
     """
     conv_id= session_id_user.split("$")[0]
     user= session_id_user.split("$")[1]
+    if user != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     read_collection = await redis.hget(f"session:{conv_id}", "read_collection")
     read_collection = read_collection.decode('utf-8')
     logger.info(" Getting available documents to chat for session: %s and collection %s", conv_id, read_collection)
@@ -320,7 +375,12 @@ async def get_docs(session_id_user: str, redis: Redis = Depends(lambda: app.stat
     return doc_in_collection, admin_access, col_type
 
 @app.post("/get_conversation/{session_id_user}")
-async def get_conversation(session_id_user: str, request: change_session, redis: Redis = Depends(lambda: app.state.redis)):
+async def get_conversation(
+    session_id_user: str,
+    request: change_session,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ First retrieves chat history for the selected conv id and then changes redis key name from old conv id to selected conv id
 
     Args:
@@ -337,6 +397,8 @@ async def get_conversation(session_id_user: str, request: change_session, redis:
     """
     new_conv_id= request.new_conv_id
     user_name_current= request.username
+    if user_name_current != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     old_conv_id= request.old_conv_id
     logger.info("User %s toggled to session id: %s", user_name_current, new_conv_id)
     conversations= await redis.get("conversations")
@@ -368,8 +430,15 @@ async def get_conversation(session_id_user: str, request: change_session, redis:
     return chat_store.json()
 
 @app.post("/ingest_doc_frontend/{session_id_user}/file_name")
-async def ingest_file_frontend(session_id_user: str, request: Ingest_req, redis: Redis = Depends(lambda: app.state.redis)):
+async def ingest_file_frontend(
+    session_id_user: str,
+    request: Ingest_req,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     user_name = session_id_user.split("$")[1]
+    if user_name != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     logger.info("User: %s ingesting file: %s to collection: %s", user_name, request.file, request.ingest_collection)
     await redis.hset(f"session:{request.conv_id}", "ingest_collection", request.ingest_collection)
     conversations= await redis.get("conversations")
@@ -410,10 +479,17 @@ async def ingest_file_frontend(session_id_user: str, request: Ingest_req, redis:
 '''
 
 @app.post("/change_collection/{session_id_user}")
-async def change_collection(session_id_user:str, request: change_col, redis: Redis = Depends(lambda: app.state.redis)) -> dict:
+async def change_collection(
+    session_id_user: str,
+    request: change_col,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+) -> dict:
     """ FOR CLI, change read collection to the specified collection """
     conv_id= session_id_user.split("$")[0]
     user_name_current= session_id_user.split("$")[1]
+    if user_name_current != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     logger.info(" Changing collection name for session: %s to: %s", conv_id, request.read_collection_name)
     conversations= await redis.get("conversations")
     conversations_dict= json.loads(conversations)
@@ -432,7 +508,12 @@ async def change_collection(session_id_user:str, request: change_col, redis: Red
         return {"message": f"For Conversation {request.conv_id}, collection already set to {collection}"}
 
 @app.post("/conversation/{session_id_user}/file_name")
-async def ingest_file(session_id_user:str, request: Ingest_req, redis: Redis = Depends(lambda: app.state.redis)) -> tuple:
+async def ingest_file(
+    session_id_user: str,
+    request: Ingest_req,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+) -> tuple:
     """ Parse document through docling parser after checking file size compatibility. 
         After parsing and postprocessing, the function chunks and embeds the document into milvus (for now, with allminilm). 
         Sends a tuple as response, first element being boolean value whether ingestion was successful
@@ -440,6 +521,8 @@ async def ingest_file(session_id_user:str, request: Ingest_req, redis: Redis = D
     """
     logger.info(" Ingesting file %s for session: %s to collection: %s", request.file, request.conv_id, request.ingest_collection)
     user_name = session_id_user.split("$")[1]
+    if user_name != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized session access")
     await redis.hset(f"session:{request.conv_id}", "ingest_collection", request.ingest_collection)
     conversations= await redis.get("conversations")
     conversations_dict= json.loads(conversations)
@@ -479,7 +562,11 @@ async def ingest_file(session_id_user:str, request: Ingest_req, redis: Redis = D
 '''
     
 @app.post("/create_collection/{collection_name}")
-async def create_collection(collection_name: str, redis: Redis = Depends(lambda: app.state.redis)):
+async def create_collection(
+    collection_name: str,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ Create an empty collection if not found in milvus
 
     Args:
@@ -489,6 +576,9 @@ async def create_collection(collection_name: str, redis: Redis = Depends(lambda:
     Returns:
         bool: if collection has been created, return True
     """
+    if not current_user.admin:
+        raise HTTPException(status_code=403, detail="Insufficient permissions")
+
     model= col_mod[collection_name]
     dim= dim_mod[model]
     milvus_client = MilvusClient(uri=MILVUS_URI,token=TOKEN)
@@ -501,13 +591,21 @@ async def create_collection(collection_name: str, redis: Redis = Depends(lambda:
     return response
 
 @app.get("/internal_get_vectordb/{collection}")
-async def get_vector_db(collection):
-    # add role based access
+async def get_vector_db(
+    collection: str,
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
+    if not current_user.admin:
+        raise HTTPException(status_code=403, detail="Insufficient permissions")
     return await milvus_db_as_excel(collection)
 
 
 @app.post("/logout")
-async def logout(request: Logout_req,redis: Redis = Depends(lambda: app.state.redis)):
+async def logout(
+    request: Logout_req,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
     """ First removes session id from redis hash and then:
         	1. Removes jsons with empty chats
             2. Removes session ids from conversation tracker for the empty OR non existent chats 
@@ -521,6 +619,8 @@ async def logout(request: Logout_req,redis: Redis = Depends(lambda: app.state.re
     """
     conv_id=request.conv_id
     username=request.user
+    if username != current_user.username and not current_user.admin:
+        raise HTTPException(status_code=403, detail="Unauthorized logout request")
     logger.info("Logout initiated for user id: %s, session id: %s", username, conv_id)
     # delete session key from redis on logout
     session_data = await redis.hgetall(f"session:{conv_id}")

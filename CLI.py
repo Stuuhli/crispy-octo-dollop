@@ -3,6 +3,7 @@ import cmd
 import os
 import requests
 import uuid
+from typing import Optional
 from app.auth import password_create
 from app.config import API_CREATE_USER, API_VALIDATE_USER, API_CONV_START, API_CONV_SEND, API_GET_HISTORY, API_FILE_INGEST, API_LOGOUT, API_CHANGECOLLECTION, USER_DB_PATH, MILVUS_URI, MILVUS_USER_ROLE,MILVUS_ROOT_ROLE,col_mod  # noqa: F401
 from app.Ingestion_workflows.milvus_RBAC import milvus_RBAC_manage
@@ -73,8 +74,7 @@ def get_user_collection_choice(collection_list: list):
             return options[user_input]
         else:
             print("Invalid choice. Please try again.")
-
-def init_session(sess_id, username: str, password: str, collection_name: str):
+def init_session(sess_id, username: str, password: str, collection_name: str, token: Optional[str] = None):
     """ Sends a post request to initialize chat memory and the session with the given session id 
     """
     data= { 
@@ -83,8 +83,9 @@ def init_session(sess_id, username: str, password: str, collection_name: str):
                 "password": password,
                 "read_collection_name": collection_name
                }
+    headers = {"Authorization": f"Bearer {token}"} if token else None
     try:
-        response = requests.post(API_CONV_START, json=data)
+        response = requests.post(API_CONV_START, json=data, headers=headers)
         response.raise_for_status()
     except HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
@@ -115,7 +116,7 @@ def check_user_DB(username: str):
         return False
 
 class ChatCLI(cmd.Cmd):
-    intro = "Please create new account by typing 'create' or login by typing 'validate <username>'\n Use ? to see list of available commands..\n"
+    intro = "Login with 'validate <username>' (required). Admins can then run 'create' to add users.\n Use ? to see list of available commands..\n"
     prompt = f"{Fore.YELLOW}User: {Style.RESET_ALL}"
 
     def __init__(self):
@@ -129,11 +130,16 @@ class ChatCLI(cmd.Cmd):
         self.user_client= None # milvus client for user
         self.access_token = "" # bearer token received after auth
 
+    def _auth_headers(self):
+        if not self.access_token:
+            return {}
+        return {"Authorization": f"Bearer {self.access_token}"}
+
     def do_create(self, args):
         """ Create account by entering user details, then request is sent to API to update DB with new user
         """
-        if self.authenticated:
-            print("The 'create' command is already disabled after successful authentication.")
+        if not self.access_token:
+            print("Please authenticate with an admin account before creating users.")
             return
         self.username_create= input("Enter username: ")
         full_name = input("Enter Full name: ")
@@ -171,8 +177,11 @@ class ChatCLI(cmd.Cmd):
                 "admin": admin
                }
         try:
-            response = requests.post(API_CREATE_USER, 
-                                    json=data)
+            response = requests.post(
+                API_CREATE_USER,
+                json=data,
+                headers=self._auth_headers(),
+            )
             response.raise_for_status()
             # create user
             user_creation= milvus_RBAC_manage()
@@ -244,7 +253,13 @@ class ChatCLI(cmd.Cmd):
                     collection_name= ""
             else:
                 collection_name= get_user_collection_choice(collection_list=collection_list)
-        session_flag=init_session(sess_id=self.session_id, username=username, password= password, collection_name= collection_name)
+        session_flag=init_session(
+            sess_id=self.session_id,
+            username=username,
+            password=password,
+            collection_name=collection_name,
+            token=self.access_token,
+        )
         if session_flag:
             return True
         self.username_current = username
@@ -281,8 +296,11 @@ class ChatCLI(cmd.Cmd):
                 "conv_id": str(self.session_id),
                 "message":message
                }
-        response = requests.post(API_CONV_SEND.format(session_id_user=str(self.session_id) + "$" + self.username_current), 
-                                 json=data)
+        response = requests.post(
+            API_CONV_SEND.format(session_id_user=str(self.session_id) + "$" + self.username_current),
+            json=data,
+            headers=self._auth_headers(),
+        )
         if response.status_code == 200: 
             print(str(response.json()))
         else:
@@ -340,7 +358,11 @@ class ChatCLI(cmd.Cmd):
             "conv_id": str(self.session_id),
             "user": self.username_current
         }
-        response= requests.post(API_LOGOUT, json=data)
+        response= requests.post(
+            API_LOGOUT,
+            json=data,
+            headers=self._auth_headers(),
+        )
         if response.status_code==200:
             print(response.json()["message"])
         else:
@@ -352,21 +374,18 @@ class ChatCLI(cmd.Cmd):
         """
         all_commands = super().get_names()
         if self.authenticated:
-            # Exclude 'do_create' and 'do_validate' if authenticated
-            return [cmd for cmd in all_commands if cmd not in ['do_create', 'do_validate']]
+            # Exclude only 'do_validate' after successful authentication
+            return [cmd for cmd in all_commands if cmd not in ['do_validate']]
         return all_commands
     
     def help_create(self):
-        if not self.authenticated:
-            print("Create a new user or resource.")
-        else:
-            print("This command is disabled after authentication.")
+        print("Create a new user (requires admin privileges).")
 
     def help_validate(self):
         if not self.authenticated:
             print("Validate the user by authenticating with a database.")
         else:
-            print("This command is disabled after authentication.")
+            print("User already authenticated.")
 
 if __name__ == "__main__":
     ChatCLI().cmdloop()

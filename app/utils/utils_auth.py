@@ -15,6 +15,12 @@ import jwt
 from app.utils.utils_logging import initialize_logging, logger
 initialize_logging(BACKEND_FASTAPI_LOG)
 
+
+class AuthenticatedUser(BaseModel):
+    username: str
+    admin: bool
+    collections: List[str]
+
 class user_auth_format(BaseModel):
     """ Request template for sending data for creation of new user account """
     username: str
@@ -94,3 +100,27 @@ def create_jwt_token(name: str, admin: bool, collections: Union[Iterable[str], s
     }
 
     return jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+
+
+def decode_jwt_token(token: str) -> AuthenticatedUser:
+    """Decode JWT and return authenticated user model."""
+
+    try:
+        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+    except jwt.PyJWTError as exc:
+        logger.warning("JWT decode failed: %s", str(exc))
+        raise
+
+    username = payload.get("sub")
+    if not username:
+        raise jwt.InvalidTokenError("Token missing subject")
+
+    collections = payload.get("collections", [])
+    if isinstance(collections, str):
+        collections = [collections]
+
+    return AuthenticatedUser(
+        username=username,
+        admin=payload.get("admin", False),
+        collections=collections,
+    )

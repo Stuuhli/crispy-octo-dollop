@@ -1,40 +1,41 @@
 # GraphRAG Integration TODO
 
-## Architektur & Infrastruktur
-- [ ] `graphrag` und benötigte Treiber (z.B. Neo4j, Weaviate) in `requirements.txt`/`installation.md` aufnehmen und lokale Testinstallation vorbereiten.
-- [ ] Entscheidung für Graph-Speicher (z.B. Neo4j-Container, SQLite/NetworkX) treffen und in `script_backend.sh` bzw. Orchestration einbinden.
-- [ ] Konfigurationsschlüssel für GraphRAG (Index-Pfade, Cache-Verzeichnisse, Backend-URL) in `app/config.py` und `.env` ergänzen.
+## Architecture & Infrastructure
+- [ ] Add `graphrag` and required drivers (e.g., Neo4j, Weaviate) to `requirements.txt`/`installation.md` and prepare a local test setup.
+- [ ] Decide on the graph store (e.g., Neo4j container, SQLite/NetworkX) and wire it into `script_backend.sh` or your orchestration layer.
+- [ ] Extend `app/config.py` / `.env` with GraphRAG configuration keys (index paths, cache directories, backend URL).
 
-## Datenaufnahme (Ingestion)
-- [ ] Bestehenden Milvus-Ingestionspfad (`app/Ingestion_workflows/`) erweitern, sodass nach erfolgreicher Vektor-Erstellung auch ein GraphRAG-Pipeline-Run angestoßen wird.
-- [ ] Dokument-Metadaten aktualisieren, damit Knoten-IDs/Rel-Informationen pro Collection versioniert abgelegt werden (`data/` + neuer Speicherort für Graph-Indizes).
-- [ ] Automatische Validierung einbauen (z.B. `unit_tests/`), die prüft, ob Graph- und Vektor-Index synchron sind.
+## Ingestion Pipeline
+- [ ] Enhance the existing Milvus ingestion flow (`app/Ingestion_workflows/`) so that a GraphRAG pipeline run is triggered after vector creation.
+- [ ] Update document metadata to version node IDs / relationships per collection (`data/` plus new storage for graph indexes).
+- [ ] Add automated validation (e.g., `unit_tests/`) that checks vector and graph indexes stay in sync.
 
 ## Retrieval & Serving
-- [ ] Eigenen Retriever (`app/retrievers/graphrag.py`) erstellen, der GraphRAG-Queries ausführt und Quellen/Citations strukturiert zurückgibt.
-- [ ] FastAPI-Endpunkt `API_CONV_SEND` um Parameter `retrieval_mode={vector, graph, hybrid}` erweitern und Antwortaufbereitung anpassen.
-- [ ] Hybrid-Logik implementieren, die Graph-Zusammenfassungen und Milvus-Kontext kombiniert, bevor der Generator (`VLLM_GEN_URL`) aufgerufen wird.
+- [ ] Implement a dedicated retriever (`app/retrievers/graphrag.py`) that executes GraphRAG queries and returns structured citations.
+- [ ] Extend the FastAPI endpoint behind `API_CONV_SEND` with `retrieval_mode={vector, graph, hybrid}` and adjust response assembly.
+- [ ] Add hybrid logic that merges graph summaries with Milvus context before calling the generator (`VLLM_GEN_URL`).
 
-## CLI & Nutzerfluss
-- [ ] CLI-Kommandos ergänzen (z.B. `chat graph`, `chat hybrid`) und Anzeigetext in `CLI.py` anpassen, inkl. Fallback, falls Graph-Index fehlt.
-- [ ] Administrator-Workflow für Reindexierung (CLI-Option oder separates Script) bereitstellen.
+## CLI & User Flow
+- [ ] Add CLI commands (e.g., `chat graph`, `chat hybrid`) and update messaging in `CLI.py`, including fallback when no graph index exists.
+- [ ] Provide an administrator reindex workflow (CLI option or standalone script).
 
-## Observability & Tests
-- [ ] Retrieval-Logging erweitern (`RETRIEVAL_LOG_PATH`), um Graph-Traversen, verwendete Knoten und Antwortqualität zu protokollieren.
-- [ ] Integrationstests schreiben, die typische Konversationen je Modus abdecken (Graph-only, Hybrid, Vector-only).
+## Observability & Testing
+- [ ] Extend retrieval logging (`RETRIEVAL_LOG_PATH`) to record graph traversals, nodes used, and answer quality.
+- [ ] Add integration tests covering conversations in each mode (graph-only, hybrid, vector-only).
 
-## Dokumentation & Rollout
-- [ ] README/`installation.md` um Setup-Schritte, Ports und Ressourcenbedarf des Graph-Backends erweitern.
-- [ ] Deployment- und Backup-Strategie für GraphRAG-Indizes dokumentieren (z.B. Export/Import, Health-Checks).
+## Documentation & Rollout
+- [ ] Update README / `installation.md` with setup steps, ports, and resource requirements for the graph backend.
+- [ ] Document deployment and backup strategy for GraphRAG indexes (export/import, health checks).
 
 # JWT Auth TODO
-- [ ] `app/config.py`: neue Secrets/ENV-Variablen für `JWT_SECRET_KEY`, `JWT_ALGORITHM`, `ACCESS_TOKEN_EXPIRE_MINUTES` definieren und in `.env` dokumentieren.
-- [ ] `app/auth.py`: Utility-Funktionen zum Signieren/Verifizieren von JWTs bereitstellen (`create_access_token`, `decode_token`) und Passworthash-Logik beibehalten.
-- [ ] `app/main.py`: Login-Flow anpassen – `/validate_user` soll bei Erfolg ein JWT zurückgeben; `start_conversation` & weitere Protected-Routen über `Depends`-Security (`HTTPBearer`) absichern, Redis nur noch für Chat-Memory nutzen.
-- [ ] `app/utils/utils_req_templates.py`: Request-/Response-Modelle für Token-Antwort und Auth-Header aktualisieren.
-- [ ] `CLI.py`: Token nach erfolgreicher Validierung speichern, bei Folge-Requests als `Authorization: Bearer` senden.
-- [ ] `frontend_gradio/`-API-Client (falls vorhanden) auf JWT umstellen und Refresh-Handling (optional) ergänzen.
-- [ ] Rolle prüfen: Admin-Only-Endpunkte (`create_user`, `ingest_file`, `create_collection`, `internal_get_vectordb`) mit Claims (`roles`, `is_admin`) absichern.
-- [ ] Logging & Fehler: 401/403-Responses vereinheitlichen, unautorisierte Zugriffe auditieren (`utils_logging`).
-- [ ] Tests: Unit-Tests für Token-Erstellung/Verfall (`unit_tests/`), Integrationstest für geschützte Route mit/ohne gültigem Token.
-- [ ] Doku: README/`installation.md` um Schritt zur Secret-Generierung und Token-Nutzung erweitern.
+- [x] `app/config.py`: load/document `JWT_SECRET_KEY`, `JWT_ALGORITHM`, `ACCESS_TOKEN_EXPIRE_MINUTES` (`installation.md`).
+- [x] `app/utils/utils_auth.py`: provide token helpers (`create_jwt_token`, `decode_jwt_token`) and retain password hashing.
+- [x] `app/main.py`: return a JWT from `/validate_user` and protect routes via `Depends(get_current_user)`.
+- [ ] `app/utils/utils_req_templates.py`: add request/response models if we want JWT payloads in OpenAPI responses.
+- [x] `CLI.py`: persist the Bearer token after login and send it with subsequent requests.
+- [ ] `frontend_gradio/`: refactor API calls to use JWT, add refresh/logout handling if needed.
+- [x] Admin-only endpoints (`create_user`, `ingest_file`, `create_collection`, `internal_get_vectordb`) enforce claims.
+- [ ] Logging / fraud detection: capture 401/403 events centrally via `utils_logging`.
+- [ ] Tests: add unit tests for token creation/expiry (`unit_tests/`) and integration tests with/without valid tokens.
+- [x] Documentation: README / `installation.md` now describe secret generation and Bearer headers.
+- [ ] Secret management: plan rotation and secure storage (Vault, deployment env vars instead of static `.env`).
