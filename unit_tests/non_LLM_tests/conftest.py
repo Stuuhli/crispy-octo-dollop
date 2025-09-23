@@ -25,7 +25,8 @@ mock_user_db = {
         "username": "test_user",
         "full_name": "Test User",
         "hashed_password": password_create("test").decode("utf-8"),
-        "disabled": False
+        "disabled": False,
+        "admin": False
     }
 }
 TEST_DB_PATH = "unit_tests/non_LLM_tests/test_auth.json"

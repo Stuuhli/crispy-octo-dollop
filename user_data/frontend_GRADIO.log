@@ -96,3 +96,13 @@ INFO [frontend.py:283]:2025-09-23 14:14:44,966:Current object created for admin_
 INFO [frontend.py:284]:2025-09-23 14:14:44,966:Successful authentication for admin_compliance, session id: cd5a3b04-e765-4375-92fd-34ba54b29a07
 INFO [frontend.py:49]:2025-09-23 14:14:45,639:Session id: cd5a3b04-e765-4375-92fd-34ba54b29a07 initialised for user: admin_compliance
 INFO [frontend.py:126]:2025-09-23 14:18:40,022:Bot response successful for user: admin_compliance for session id: cd5a3b04-e765-4375-92fd-34ba54b29a07
+INFO [_client.py:1025]:2025-09-23 14:26:52,582:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:26:52,602:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:26:53,128:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-23 14:26:53,128:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:235]:2025-09-23 14:27:39,777:Logging in for: admin_compliance
+INFO [frontend.py:265]:2025-09-23 14:27:40,218:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:283]:2025-09-23 14:27:40,226:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['New Chat', 'a0fc06d8-cda5-4aba-89a9-fbcd2b244303']]
+INFO [frontend.py:284]:2025-09-23 14:27:40,226:Successful authentication for admin_compliance, session id: a0fc06d8-cda5-4aba-89a9-fbcd2b244303
+INFO [frontend.py:49]:2025-09-23 14:27:40,678:Session id: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 initialised for user: admin_compliance
+INFO [frontend.py:65]:2025-09-23 14:28:45,507:User admin_compliance ingesting file: ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf to collection: compliance_center

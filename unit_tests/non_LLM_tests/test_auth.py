@@ -62,7 +62,8 @@ def test_create_new_user(test_client):
         "username": "new_user",
         "full_name": "new user",
         "hashed_password": password_create("new_test").decode("utf-8"),
-        "disabled": False
+        "disabled": False,
+        "admin": False
     }
     write_json(username=payload_create["username"], new_data=payload_create, filename=TEST_DB_PATH)
     payload_valid = {

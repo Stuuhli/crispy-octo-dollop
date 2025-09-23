@@ -1,4 +1,5 @@
-"""1. Test message: test the correct collection is returned from redis before milvus hybrid retrieve.
+"""
+1. Test message: test the correct collection is returned from redis before milvus hybrid retrieve.
 2. Test message: test if milvus hybrid retrieve does not work, it returns error (eg. embedding model not present)
 3. Test milvus hybrid retrieve: embedding fucntion returns what is needed and the model-dim is correct (from main fucntion as well)
 4. Test milvus hybrid retrieve: test what happens if k>= vector k

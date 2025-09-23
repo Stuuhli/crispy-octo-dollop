@@ -1239,3 +1239,103 @@ INFO [timing.py:139]:2025-09-23 14:18:40,000:TIMING: Wall: 96526.2ms | CPU: 3193
 INFO [config.py:54]:2025-09-23 14:20:45,177:PyTorch version 2.5.1 available.
 INFO [config.py:54]:2025-09-23 14:23:26,479:PyTorch version 2.5.1 available.
 WARNING [main.py:111]:2025-09-23 14:23:27,388:Doc store directory /doc_store not found; static mount disabled
+INFO [config.py:54]:2025-09-23 14:27:06,697:PyTorch version 2.5.1 available.
+INFO [main.py:75]:2025-09-23 14:27:08,741: Initializing ollama and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:27:08,748:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:27:39,788: Validating: admin_compliance
+INFO [main.py:159]:2025-09-23 14:27:39,980: Validation successful for admin_compliance
+INFO [timing.py:139]:2025-09-23 14:27:39,981:TIMING: Wall:  193.8ms | CPU:  190.0ms | timing.app.main.validate_user
+INFO [main.py:182]:2025-09-23 14:27:40,046: Initializing session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 for user admin_compliance
+INFO [main.py:210]:2025-09-23 14:27:40,215:Successfully set up session variables in Redis for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 
+INFO [main.py:225]:2025-09-23 14:27:40,216:Started session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303
+INFO [timing.py:139]:2025-09-23 14:27:40,217:TIMING: Wall:  172.3ms | CPU:  160.0ms | timing.app.main.start_conversation
+INFO [main.py:345]:2025-09-23 14:27:40,222:Getting existing conversation ids for user: admin_compliance on user login
+WARNING [utils_backend.py:86]:2025-09-23 14:27:40,223:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_745c752c-2abd-424e-9faa-e489bc21853f.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 14:27:40,223:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_aa5e1e3a-6ad7-4f0e-9b36-51fa28838166.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 14:27:40,224:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_f7b13798-d0f3-4284-854a-48648c65f505.json is empty
+WARNING [utils_backend.py:86]:2025-09-23 14:27:40,225:/home/tobi/crispy-octo-dollop/user_data/admin_compliance/chat history/chat_ca1cd27f-6acd-42a3-9d1e-45b065ea2b6c.json is empty
+INFO [timing.py:139]:2025-09-23 14:27:40,225:TIMING: Wall:    5.2ms | CPU:    0.0ms | timing.app.main.get_existing_conv_id
+INFO [main.py:376]:2025-09-23 14:27:40,681: Getting available documents to chat for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 and collection compliance_center
+INFO [timing.py:139]:2025-09-23 14:27:41,289:TIMING: Wall:  608.7ms | CPU:   40.0ms | timing.app.main.get_docs
+INFO [main.py:447]:2025-09-23 14:28:45,511:User: admin_compliance ingesting file: /tmp/gradio/81f2bd67cffd840a3e1ba213f9d74672826f4720897c53478001b7e528fa9adf/ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf to collection: compliance_center
+INFO [main.py:472]:2025-09-23 14:28:45,515:New file in /home/tobi/crispy-octo-dollop/data folder: ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf
+ERROR [docling_parse_process.py:516]:2025-09-23 14:28:45,522:Error with date extraction for file /home/tobi/crispy-octo-dollop/data/ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf : 'NoneType' object has no attribute 'creation_date'
+INFO [docling_parse_process.py:526]:2025-09-23 14:28:45,523:Cache not found for this file ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf. Continuing with parsing.
+INFO [document.py:321]:2025-09-23 14:28:45,526:detected formats: [<InputFormat.PDF: 'pdf'>]
+INFO [document_converter.py:284]:2025-09-23 14:28:45,642:Going to convert document batch...
+INFO [document_converter.py:319]:2025-09-23 14:28:45,642:Initializing pipeline for StandardPdfPipeline with options hash edfafc85ecb0f718824d543e40889984
+INFO [base_factory.py:112]:2025-09-23 14:28:45,668:Loading plugin 'docling_defaults'
+INFO [__init__.py:16]:2025-09-23 14:28:45,668:Registered ocr engines: ['easyocr', 'ocrmac', 'rapidocr', 'tesserocr', 'tesseract']
+WARNING [accelerator_utils.py:66]:2025-09-23 14:28:45,670:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:28:45,671:Accelerator device: 'cpu'
+WARNING [accelerator_utils.py:66]:2025-09-23 14:28:46,579:CUDA is not available in the system. Fall back to 'CPU'
+INFO [accelerator_utils.py:82]:2025-09-23 14:28:46,579:Accelerator device: 'cpu'
+INFO [base_factory.py:112]:2025-09-23 14:28:47,293:Loading plugin 'docling_defaults'
+INFO [__init__.py:26]:2025-09-23 14:28:47,293:Registered picture descriptions: ['vlm', 'api']
+INFO [base_pipeline.py:39]:2025-09-23 14:28:47,294:Processing document ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf
+INFO [config.py:54]:2025-09-23 14:34:24,185:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 14:34:25,959:Doc store directory /doc_store not found; static mount disabled
+INFO [config.py:54]:2025-09-23 14:37:04,438:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 14:37:06,161:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 14:37:06,899: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:37:06,909:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 14:37:06,914:TIMING: Wall:    1.8ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 14:37:06,915:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 14:37:06,925: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:37:06,932:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:37:06,948: Validating: test_user
+INFO [main.py:159]:2025-09-23 14:37:07,232: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 14:37:07,232:TIMING: Wall:  290.6ms | CPU:  290.0ms | timing.app.main.validate_user
+INFO [main.py:75]:2025-09-23 14:37:08,034: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:37:08,039:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:37:08,045: Validating: test_user
+INFO [main.py:157]:2025-09-23 14:37:08,324:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 14:37:08,325:TIMING: Wall:  280.4ms | CPU:  280.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 14:37:08,326:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 14:37:08,331: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:37:08,334:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:37:08,629: Validating: new_user
+INFO [main.py:159]:2025-09-23 14:37:08,918: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 14:37:08,918:TIMING: Wall:  290.0ms | CPU:  280.0ms | timing.app.main.validate_user
+WARNING [utils_auth.py:111]:2025-09-23 14:37:09,264:JWT decode failed: Not enough segments
+INFO [document_converter.py:299]:2025-09-23 14:37:38,040:Finished converting document ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf in 532.52 sec.
+INFO [docling_parse_process.py:534]:2025-09-23 14:37:38,929:Saving png for file ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf, total pages: 164
+INFO [docling_parse_process.py:537]:2025-09-23 14:38:22,414:Docling parsing successful for file ISO IEC 27002 Information security, cybersecurity and -- Joint Technical Committee ISO_IEC JTC 1, Information -- International standard ISO_IEC -- a967f3067ce6b698454eb51ae20b6acb -- Annas Archive.pdf
+INFO [utils_ingestion.py:72]:2025-09-23 14:38:23,238:Chunking document of 651 elements post parsing for collection compliance_center for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303
+INFO [utils_ingestion.py:76]:2025-09-23 14:38:24,041:ingesting 68 rows for session: a0fc06d8-cda5-4aba-89a9-fbcd2b244303 to collection compliance_center
+INFO [milvus_ingest.py:238]:2025-09-23 14:38:24,467:Embedding new chunks
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,482:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,501:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,526:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,545:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,560:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,575:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,592:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,608:Encoding text using embeddinggemma
+INFO [milvus_ingest.py:62]:2025-09-23 14:38:24,624:Encoding text using embeddinggemma
+INFO [config.py:54]:2025-09-23 14:40:49,042:PyTorch version 2.5.1 available.
+WARNING [main.py:111]:2025-09-23 14:40:50,527:Doc store directory /doc_store not found; static mount disabled
+INFO [main.py:75]:2025-09-23 14:40:51,124: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:40:51,129:Initiating expired session cleanup in Redis
+INFO [timing.py:139]:2025-09-23 14:40:51,135:TIMING: Wall:    1.7ms | CPU:    0.0ms | timing.app.main.health
+INFO [_client.py:1038]:2025-09-23 14:40:51,136:HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 14:40:51,142: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:40:51,145:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:40:51,151: Validating: test_user
+INFO [main.py:159]:2025-09-23 14:40:51,414: Validation successful for test_user
+INFO [timing.py:139]:2025-09-23 14:40:51,415:TIMING: Wall:  266.3ms | CPU:  270.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 14:40:51,416:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 200 OK"
+INFO [main.py:75]:2025-09-23 14:40:51,421: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:40:51,424:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:40:51,428: Validating: test_user
+INFO [main.py:157]:2025-09-23 14:40:51,680:Invalid username or password 
+INFO [timing.py:139]:2025-09-23 14:40:51,680:TIMING: Wall:  252.9ms | CPU:  260.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 14:40:51,681:HTTP Request: POST http://testserver/validate_user/test_user "HTTP/1.1 401 Unauthorized"
+INFO [main.py:75]:2025-09-23 14:40:51,686: Initializing None and Redis
+INFO [utils_backend.py:18]:2025-09-23 14:40:51,688:Initiating expired session cleanup in Redis
+INFO [main.py:150]:2025-09-23 14:40:51,962: Validating: new_user
+INFO [main.py:159]:2025-09-23 14:40:52,240: Validation successful for new_user
+INFO [timing.py:139]:2025-09-23 14:40:52,243:TIMING: Wall:  281.0ms | CPU:  280.0ms | timing.app.main.validate_user
+INFO [_client.py:1038]:2025-09-23 14:40:52,243:HTTP Request: POST http://testserver/validate_user/new_user "HTTP/1.1 200 OK"
+WARNING [utils_auth.py:111]:2025-09-23 14:40:52,248:JWT decode failed: Not enough segments
+INFO [_client.py:1786]:2025-09-23 14:41:14,716:HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"

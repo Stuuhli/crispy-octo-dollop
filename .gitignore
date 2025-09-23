@@ -25,3 +25,7 @@ app/__pycache__/
 app/*/__pycache__/
 helper_scripts/__pycache__/
 unit_tests/**/__pycache__/
+etcd-data/member/wal/
+etcd-data/member/snap/
+milvus-data/rdb_data_meta_kv/
+milvus-data/rdb_data/
