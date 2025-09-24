@@ -5,7 +5,7 @@ import requests
 import uuid
 from typing import Optional
 from app.auth import password_create
-from app.config import API_CREATE_USER, API_VALIDATE_USER, API_CONV_START, API_CONV_SEND, API_GET_HISTORY, API_FILE_INGEST, API_LOGOUT, API_CHANGECOLLECTION, USER_DB_PATH, MILVUS_URI, MILVUS_USER_ROLE,MILVUS_ROOT_ROLE,col_mod  # noqa: F401
+from app.config import API_CREATE_USER, API_VALIDATE_USER, API_CONV_START, API_CONV_SEND, API_GET_HISTORY, API_FILE_INGEST, API_LOGOUT, API_CHANGECOLLECTION, USER_DB_PATH, MILVUS_URI, MILVUS_USER_ROLE,MILVUS_ROOT_ROLE,col_mod
 from app.Ingestion_workflows.milvus_RBAC import milvus_RBAC_manage
 from app.utils.utils_auth import load_json
 from rich import print

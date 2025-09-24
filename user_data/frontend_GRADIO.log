@@ -127,3 +127,102 @@ INFO [frontend.py:284]:2025-09-23 15:00:31,759:Successful authentication for adm
 INFO [frontend.py:49]:2025-09-23 15:00:32,017:Session id: aff7a446-a689-4d20-b0aa-0326a03fd033 initialised for user: admin_compliance
 INFO [frontend.py:65]:2025-09-23 15:00:38,521:User admin_compliance ingesting file: C5_2020.pdf to collection: compliance_center
 INFO [frontend.py:126]:2025-09-23 15:12:10,224:Bot response successful for user: admin_compliance for session id: aff7a446-a689-4d20-b0aa-0326a03fd033
+INFO [_client.py:1025]:2025-09-24 09:39:31,015:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 09:39:31,039:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 09:39:31,242:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 09:39:31,325:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:235]:2025-09-24 09:40:45,677:Logging in for: admin_compliance
+INFO [frontend.py:265]:2025-09-24 09:40:46,167:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:283]:2025-09-24 09:40:46,179:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['New Chat', 'c714b3d0-4a34-4a10-baf8-c4f540190c22']]
+INFO [frontend.py:284]:2025-09-24 09:40:46,179:Successful authentication for admin_compliance, session id: c714b3d0-4a34-4a10-baf8-c4f540190c22
+INFO [frontend.py:49]:2025-09-24 09:40:46,682:Session id: c714b3d0-4a34-4a10-baf8-c4f540190c22 initialised for user: admin_compliance
+INFO [frontend.py:65]:2025-09-24 09:40:55,379:User admin_compliance ingesting file: INV 17096 ISO 27019 2024.pdf to collection: compliance_center
+INFO [frontend.py:65]:2025-09-24 09:49:57,786:User admin_compliance ingesting file: ISO IEC 27017-2015.pdf to collection: compliance_center
+INFO [frontend.py:65]:2025-09-24 09:55:01,612:User admin_compliance ingesting file: isoiec27018ed3.0en.pdf to collection: compliance_center
+INFO [frontend.py:126]:2025-09-24 10:03:59,491:Bot response successful for user: admin_compliance for session id: c714b3d0-4a34-4a10-baf8-c4f540190c22
+INFO [frontend.py:315]:2025-09-24 10:04:48,782:User admin_compliance logged out
+INFO [_client.py:1025]:2025-09-24 11:15:58,636:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:15:58,659:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:15:59,038:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:15:59,380:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:235]:2025-09-24 11:16:13,820:Logging in for: admin_compliance
+ERROR [frontend.py:290]:2025-09-24 11:16:13,822:Got an error during authentication: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /validate_user/admin_compliance (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x749734446720>: Failed to establish a new connection: [Errno 111] Connection refused'))
+INFO [frontend.py:235]:2025-09-24 11:16:21,865:Logging in for: admin_compliance
+INFO [frontend.py:265]:2025-09-24 11:16:22,345:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:283]:2025-09-24 11:16:22,356:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['New Chat', '88b39f53-7c71-4bbe-b8a8-498cbac6d72b']]
+INFO [frontend.py:284]:2025-09-24 11:16:22,357:Successful authentication for admin_compliance, session id: 88b39f53-7c71-4bbe-b8a8-498cbac6d72b
+INFO [frontend.py:49]:2025-09-24 11:16:22,847:Session id: 88b39f53-7c71-4bbe-b8a8-498cbac6d72b initialised for user: admin_compliance
+INFO [frontend.py:218]:2025-09-24 11:16:51,352:User admin_compliance changed chat session to previous session: 88b39f53-7c71-4bbe-b8a8-498cbac6d72b
+INFO [frontend.py:315]:2025-09-24 11:17:03,608:User admin_compliance logged out
+INFO [_client.py:1025]:2025-09-24 11:24:36,096:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:24:36,190:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:26:17,372:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:26:17,540:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:26:26,563:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:26:26,672:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:28:50,188:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:28:50,330:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:30:28,652:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:30:28,671:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:30:28,976:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:30:29,071:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:380]:2025-09-24 11:31:26,787:Logging in for: admin_compliance
+INFO [frontend.py:410]:2025-09-24 11:31:27,236:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:428]:2025-09-24 11:31:27,242:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['New Chat', '6978e8de-3644-48a6-8076-de07f9c86ed6']]
+INFO [frontend.py:429]:2025-09-24 11:31:27,242:Successful authentication for admin_compliance, session id: 6978e8de-3644-48a6-8076-de07f9c86ed6
+INFO [frontend.py:71]:2025-09-24 11:31:27,793:Session id: 6978e8de-3644-48a6-8076-de07f9c86ed6 initialised for user: admin_compliance
+INFO [frontend.py:162]:2025-09-24 11:32:36,612:User admin_compliance queuing 3 document(s) for collection compliance_center
+INFO [frontend.py:251]:2025-09-24 11:48:55,266:Bot response successful for user: admin_compliance for session id: 6978e8de-3644-48a6-8076-de07f9c86ed6
+ERROR [frontend.py:331]:2025-09-24 11:49:27,742:Fehler beim Aktualisieren des Batch-Status für 6978e8de-3644-48a6-8076-de07f9c86ed6: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /ingest_batch/status?conv_id=6978e8de-3644-48a6-8076-de07f9c86ed6 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b34a03b9670>: Failed to establish a new connection: [Errno 111] Connection refused'))
+INFO [_client.py:1025]:2025-09-24 11:54:59,453:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:54:59,526:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:56:03,036:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:56:03,054:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:56:03,366:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 11:56:03,682:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:401]:2025-09-24 11:56:12,222:Logging in for: admin_compliance
+INFO [frontend.py:431]:2025-09-24 11:56:12,680:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:449]:2025-09-24 11:56:12,693:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['Was kannst du mir zur Organisation sagen?', '6978e8de-3644-48a6-8076-de07f9c86ed6'], ['New Chat', 'd40a19ba-6809-494d-ab06-e96cd39c9ae2']]
+INFO [frontend.py:450]:2025-09-24 11:56:12,693:Successful authentication for admin_compliance, session id: d40a19ba-6809-494d-ab06-e96cd39c9ae2
+INFO [frontend.py:71]:2025-09-24 11:56:13,246:Session id: d40a19ba-6809-494d-ab06-e96cd39c9ae2 initialised for user: admin_compliance
+INFO [_client.py:1025]:2025-09-24 12:04:29,471:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:04:29,489:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:04:29,721:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:04:29,872:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:443]:2025-09-24 12:06:13,539:Logging in for: admin_compliance
+INFO [frontend.py:473]:2025-09-24 12:06:13,976:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:491]:2025-09-24 12:06:13,983:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['Was kannst du mir zur Organisation sagen?', '6978e8de-3644-48a6-8076-de07f9c86ed6'], ['New Chat', 'f24c5afb-95c2-4cd6-a437-fd1a5a3bb73f']]
+INFO [frontend.py:492]:2025-09-24 12:06:13,983:Successful authentication for admin_compliance, session id: f24c5afb-95c2-4cd6-a437-fd1a5a3bb73f
+INFO [frontend.py:74]:2025-09-24 12:06:14,316:Session id: f24c5afb-95c2-4cd6-a437-fd1a5a3bb73f initialised for user: admin_compliance
+INFO [frontend.py:523]:2025-09-24 12:08:21,614:User admin_compliance logged out
+WARNING [frontend.py:120]:2025-09-24 12:08:22,135:initialize_instance called without active session for user admin_compliance (hash: pab52vfwlok)
+INFO [frontend.py:443]:2025-09-24 12:08:34,471:Logging in for: admin_compliance
+INFO [frontend.py:473]:2025-09-24 12:08:34,878:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:491]:2025-09-24 12:08:34,886:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['Was kannst du mir zur Organisation sagen?', '6978e8de-3644-48a6-8076-de07f9c86ed6'], ['New Chat', '750f5463-a9b9-46a7-b2bd-3c618e334165']]
+INFO [frontend.py:492]:2025-09-24 12:08:34,887:Successful authentication for admin_compliance, session id: 750f5463-a9b9-46a7-b2bd-3c618e334165
+INFO [frontend.py:74]:2025-09-24 12:08:35,354:Session id: 750f5463-a9b9-46a7-b2bd-3c618e334165 initialised for user: admin_compliance
+INFO [frontend.py:178]:2025-09-24 12:08:48,948:User admin_compliance queuing 1 document(s) for collection compliance_center
+INFO [frontend.py:289]:2025-09-24 12:14:09,161:Bot response successful for user: admin_compliance for session id: 750f5463-a9b9-46a7-b2bd-3c618e334165
+INFO [frontend.py:289]:2025-09-24 12:17:56,420:Bot response successful for user: admin_compliance for session id: 750f5463-a9b9-46a7-b2bd-3c618e334165
+INFO [frontend.py:515]:2025-09-24 12:19:16,508:{'message': 'Logged out successfully'} for user admin_compliance
+INFO [frontend.py:523]:2025-09-24 12:19:16,572:User admin_compliance logged out
+INFO [frontend.py:443]:2025-09-24 12:19:25,227:Logging in for: admin_compliance
+INFO [frontend.py:473]:2025-09-24 12:19:25,569:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:491]:2025-09-24 12:19:25,578:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['Was kannst du mir zur Organisation sagen?', '6978e8de-3644-48a6-8076-de07f9c86ed6'], ['Welche kryptographischen Standards sollten befolgt werden?', '750f5463-a9b9-46a7-b2bd-3c618e334165'], ['New Chat', 'bf809b92-4691-400a-af5a-8f9f37ddc919']]
+INFO [frontend.py:492]:2025-09-24 12:19:25,580:Successful authentication for admin_compliance, session id: bf809b92-4691-400a-af5a-8f9f37ddc919
+INFO [frontend.py:74]:2025-09-24 12:19:26,122:Session id: bf809b92-4691-400a-af5a-8f9f37ddc919 initialised for user: admin_compliance
+INFO [frontend.py:426]:2025-09-24 12:19:31,598:User admin_compliance changed chat session to previous session: 750f5463-a9b9-46a7-b2bd-3c618e334165
+INFO [frontend.py:426]:2025-09-24 12:19:34,014:User admin_compliance changed chat session to previous session: 6978e8de-3644-48a6-8076-de07f9c86ed6
+INFO [frontend.py:426]:2025-09-24 12:19:49,079:User admin_compliance changed chat session to previous session: 750f5463-a9b9-46a7-b2bd-3c618e334165
+ERROR [frontend.py:296]:2025-09-24 12:28:08,833:Got an error during getting bot response for session id: 750f5463-a9b9-46a7-b2bd-3c618e334165: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/750f5463-a9b9-46a7-b2bd-3c618e334165$admin_compliance/message
+INFO [_client.py:1025]:2025-09-24 12:29:42,496:HTTP Request: GET http://localhost:8083/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:29:42,519:HTTP Request: HEAD http://localhost:8083/ "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:29:42,674:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [_client.py:1025]:2025-09-24 12:29:42,812:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO [frontend.py:443]:2025-09-24 12:30:17,316:Logging in for: admin_compliance
+INFO [frontend.py:473]:2025-09-24 12:30:17,767:User admin_compliance has collection: compliance_center assigned at the backend
+INFO [frontend.py:491]:2025-09-24 12:30:17,773:Current object created for admin_compliance has existing convos: [['Mäuschen mach mal "piep"!', '3b47e32c-002e-402a-a10d-81aed46c79c7'], ['Wie müssen Dokumente der Sicherheitsstufe I3 vernichtet werdne?', '692c253d-aee7-4c68-8e19-bcc515e4b06c'], ['hallo', 'e060705d-d5b0-4a85-908f-068e5c36d979'], ['heya, how you doing?', 'cd5a3b04-e765-4375-92fd-34ba54b29a07'], ['Welche Kriterien der ISO27002 werden von der Richtlinie zu...', 'aff7a446-a689-4d20-b0aa-0326a03fd033'], ['Werden Controls aus der ISO 27019 in den bereitgestellten...', 'c714b3d0-4a34-4a10-baf8-c4f540190c22'], ['Was kannst du mir zur Organisation sagen?', '6978e8de-3644-48a6-8076-de07f9c86ed6'], ['Welche kryptographischen Standards sollten befolgt werden?', '750f5463-a9b9-46a7-b2bd-3c618e334165'], ['New Chat', 'd8623422-afd6-47a2-b80c-8fa9037a2a12']]
+INFO [frontend.py:492]:2025-09-24 12:30:17,774:Successful authentication for admin_compliance, session id: d8623422-afd6-47a2-b80c-8fa9037a2a12
+INFO [frontend.py:74]:2025-09-24 12:30:18,169:Session id: d8623422-afd6-47a2-b80c-8fa9037a2a12 initialised for user: admin_compliance
+ERROR [frontend.py:296]:2025-09-24 14:26:36,887:Got an error during getting bot response for session id: d8623422-afd6-47a2-b80c-8fa9037a2a12: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/d8623422-afd6-47a2-b80c-8fa9037a2a12$admin_compliance/message
+ERROR [frontend.py:296]:2025-09-24 14:31:34,223:Got an error during getting bot response for session id: d8623422-afd6-47a2-b80c-8fa9037a2a12: 500 Server Error: Internal Server Error for url: http://localhost:8000/conversation/d8623422-afd6-47a2-b80c-8fa9037a2a12$admin_compliance/message

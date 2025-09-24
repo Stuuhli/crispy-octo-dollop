@@ -14,6 +14,8 @@
 
 .vscode
 .DS_Store
+.venv
+.wal
 
 __pycache__
 __pypackages__
@@ -23,4 +25,4 @@ data
 milvus-data
 etcd-data
 HPC_scripts/HF_key.env
-.venv
+

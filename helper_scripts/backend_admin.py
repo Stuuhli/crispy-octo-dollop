@@ -4,10 +4,10 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(script_dir)
 sys.path.append(parent_dir)
-from app.config import MILVUS_URI, TOKEN, MILVUS_ROOT_ROLE, MILVUS_USER_ROLE, USER_DB_PATH, USER_COLLECTION_MAPPING, col_mod  # noqa: E402
-from app.Ingestion_workflows.docling_parse_process import Docling_parser # noqa: E402
-from pymilvus.exceptions import MilvusException  # noqa: E402
-import json  # noqa: E402
+from app.config import MILVUS_URI, TOKEN, MILVUS_ROOT_ROLE, MILVUS_USER_ROLE, USER_DB_PATH, USER_COLLECTION_MAPPING, col_mod
+from app.Ingestion_workflows.docling_parse_process import Docling_parser
+from pymilvus.exceptions import MilvusException
+import json
 
 def init_client():
     client = MilvusClient(
@@ -57,7 +57,7 @@ def delete_col(collection_name):
     try:
         client.drop_collection(
         collection_name=collection_name)
-    except:  # noqa: E722
+    except:
         pass
     client.close()
     return

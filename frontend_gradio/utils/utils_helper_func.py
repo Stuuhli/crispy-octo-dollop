@@ -1,9 +1,16 @@
-from config_URL import MILVUS_URI, API_GET_EXISTING_CONV, API_GET_AVAILABLE_DOC_NAMES, API_LOG_FEEDBACK
+from config_URL import (
+    MILVUS_URI,
+    API_GET_EXISTING_CONV,
+    API_GET_AVAILABLE_DOC_NAMES,
+    API_LOG_FEEDBACK,
+    API_INGEST_BATCH_STATUS,
+)
 from pymilvus import MilvusClient
-from utils.utils_logging import logger, initialize_logging, FRONTEND_LOG  # noqa: E402
+from utils.utils_logging import logger, initialize_logging, FRONTEND_LOG
 import json
 import pandas as pd
 import requests
+from requests import HTTPError
 
 # logging config
 initialize_logging(FRONTEND_LOG)
@@ -118,3 +125,42 @@ def get_doc_names_frontend(conv_id: str, username: str, headers=None):
     except Exception as e: 
         logger.error("Error while retrieving doc names for user %s: %s", username, str(e))
     return available_doc_markdown, admin_access_user, collection_type
+
+
+def empty_batch_status_frame() -> pd.DataFrame:
+    """Utility to provide a consistent empty dataframe for batch ingestion status."""
+    return pd.DataFrame(columns=["Document", "Collection", "Status", "Message"])
+
+
+def get_batch_status_frontend(conv_id: str, headers=None) -> pd.DataFrame:
+    """Fetch batch ingestion status for a conversation."""
+    params = {"conv_id": conv_id}
+    try:
+        response = requests.get(
+            API_INGEST_BATCH_STATUS,
+            params=params,
+            headers=headers,
+        )
+        response.raise_for_status()
+    except HTTPError as err:
+        status_code = err.response.status_code if err.response else None
+        if status_code == 403:
+            return empty_batch_status_frame()
+        logger.error("Failed to retrieve batch status for %s: %s", conv_id, str(err))
+        raise
+
+    data = response.json()
+    if not data:
+        return empty_batch_status_frame()
+
+    records = []
+    for item in data:
+        records.append(
+            {
+                "Document": item.get("filename", ""),
+                "Collection": item.get("ingest_collection", ""),
+                "Status": item.get("status", ""),
+                "Message": item.get("message", ""),
+            }
+        )
+    return pd.DataFrame(records)

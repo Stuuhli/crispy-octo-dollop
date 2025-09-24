@@ -4,8 +4,8 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(script_dir)
 sys.path.append(parent_dir)
-from app.config import API_GETCOLLECTION, DOC_NAME_METADATA  # noqa: E402
-import requests  # noqa: E402
+from app.config import API_GETCOLLECTION, DOC_NAME_METADATA
+import requests
 
 def extract_nested_values(row):
     """ flattens the nested dictionary

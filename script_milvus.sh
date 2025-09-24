@@ -71,8 +71,8 @@ start() {
     
     # Load generative model
     echo "Loading generative model..."
-    #start_process apptainer exec instance://ollama ollama pull gemma3n:e4b
-    start_process apptainer exec instance://ollama ollama pull gemma3n:e2b
+    start_process apptainer exec instance://ollama ollama pull gemma3n:e4b
+    #start_process apptainer exec instance://ollama ollama pull gemma3n:e2b
     sleep 5
 
     # Load embedding models

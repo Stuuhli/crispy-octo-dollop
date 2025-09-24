@@ -18,7 +18,16 @@ from app.utils.utils_auth import (
 from app.utils.utils_backend import deserialize, cleanup_expired_sessions, check_chat_history_db, check_empty_chats
 from app.utils.utils_ingestion import FileUploadValidator, milvus_db_as_excel, ingest, get_doc_in_collection, check_admin
 from app.utils.utils_logging import initialize_logging, logger
-from app.utils.utils_req_templates import session_start_req, Message_request, Ingest_req, change_col, Logout_req, change_session, feedback_model
+from app.utils.utils_req_templates import (
+    session_start_req,
+    Message_request,
+    Ingest_req,
+    BatchIngestReq,
+    change_col,
+    Logout_req,
+    change_session,
+    feedback_model,
+)
 from contextlib import asynccontextmanager
 from fastapi import Depends
 from fastapi import FastAPI, HTTPException
@@ -33,7 +42,8 @@ from llama_index.llms.ollama import Ollama
 from llama_index.llms.openai_like import OpenAILike
 from pymilvus import MilvusClient
 from redis.asyncio import Redis
-from typing import Dict
+from typing import Any, Dict, List, Optional
+from uuid import uuid4
 import asyncio
 import copy
 import httpx
@@ -52,6 +62,121 @@ initialize_logging(BACKEND_FASTAPI_LOG)
 #global variables
 MODEL = os.getenv("MODEL", "llama3.2")
 validator = FileUploadValidator(max_size_mb=50)
+
+INGEST_STATUS_QUEUED = "queued"
+INGEST_STATUS_PROCESSING = "processing"
+INGEST_STATUS_COMPLETED = "completed"
+INGEST_STATUS_FAILED = "failed"
+
+
+async def _register_ingestion_job(
+    app: FastAPI, job_id: str, filename: str, conv_id: str, ingest_collection: str
+) -> None:
+    """Store initial queued status for a new ingestion job"""
+    async with app.state.ingestion_status_lock:
+        app.state.ingestion_status.append(
+            {
+                "job_id": job_id,
+                "filename": filename,
+                "conv_id": conv_id,
+                "ingest_collection": ingest_collection,
+                "status": INGEST_STATUS_QUEUED,
+                "message": "Waiting",
+            }
+        )
+
+
+async def _update_ingestion_job(app: FastAPI, job_id: str, **updates: Any) -> None:
+    """Update status data for a specific job"""
+    async with app.state.ingestion_status_lock:
+        for job in app.state.ingestion_status:
+            if job["job_id"] == job_id:
+                job.update(updates)
+                break
+
+
+async def process_ingestion_job(app: FastAPI, job: Dict[str, Any]) -> str:
+    """Process a single ingestion job sequentially"""
+    file_path: str = job["file"]
+    ingest_collection: str = job["ingest_collection"]
+    user_name: str = job["user_name"]
+    conv_id: str = job["conv_id"]
+    milvus_password: str = job["milvus_password"]
+
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    is_valid, message = validator.validate_file(file_path)
+    if not is_valid:
+        raise ValueError(message)
+
+    if not os.path.exists(FILES_DB):
+        os.mkdir(FILES_DB)
+
+    filename = os.path.basename(file_path)
+    destination = os.path.join(FILES_DB, filename)
+    if os.path.exists(destination):
+        base, ext = os.path.splitext(filename)
+        destination = os.path.join(FILES_DB, f"{base}_{uuid4().hex}{ext}")
+
+    shutil.copy(file_path, destination)
+    parsing_obj = Docling_parser()
+    parsed_doc = parsing_obj.docling_ingest(file=destination, collection_name=ingest_collection)
+    response, ingest_message = await ingest(
+        parsed_doc=parsed_doc,
+        file=destination,
+        user_name=user_name,
+        ingest_collection=ingest_collection,
+        user_milvus_pass=milvus_password,
+        conv_id=conv_id,
+    )
+    if not response:
+        raise RuntimeError(ingest_message)
+    return ingest_message
+
+
+async def ingestion_worker(app: FastAPI) -> None:
+    """Background worker that consumes ingestion jobs one at a time"""
+    while True:
+        job: Dict[str, Any] = await app.state.ingestion_queue.get()
+        job_id = job["job_id"]
+        try:
+            await _update_ingestion_job(app, job_id, status=INGEST_STATUS_PROCESSING, message="Processing")
+            result_message = await process_ingestion_job(app, job)
+            await _update_ingestion_job(
+                app,
+                job_id,
+                status=INGEST_STATUS_COMPLETED,
+                message=result_message or "Ingestion successful",
+            )
+        except Exception as exc:
+            logger.error(
+                "Batch ingestion failed for %s in conversation %s: %s",
+                job.get("filename"),
+                job.get("conv_id"),
+                str(exc),
+                exc_info=True,
+            )
+            await _update_ingestion_job(
+                app,
+                job_id,
+                status=INGEST_STATUS_FAILED,
+                message=str(exc),
+            )
+        finally:
+            app.state.ingestion_queue.task_done()
+
+
+async def enqueue_ingestion_job(app: FastAPI, job: Dict[str, Any]) -> None:
+    """Add a job to the queue and initialize its status"""
+    await _register_ingestion_job(
+        app,
+        job["job_id"],
+        job["filename"],
+        job["conv_id"],
+        job["ingest_collection"],
+    )
+    await app.state.ingestion_queue.put(job)
 
 # Security dependency
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -75,6 +200,10 @@ async def lifespan(app: FastAPI):
     logger.info(f" Initializing {BACKEND} and Redis")
     # decode responses is False as manual decoding is necessary for some of the redis "get" commands
     app.state.redis = Redis(host='localhost', port=6379, db=0, decode_responses=False)
+    app.state.ingestion_queue = asyncio.Queue()
+    app.state.ingestion_status = []
+    app.state.ingestion_status_lock = asyncio.Lock()
+    app.state.ingestion_worker = asyncio.create_task(ingestion_worker(app))
     if BACKEND=="ollama":
         Settings.llm = Ollama(model=MODEL, request_timeout=300.0, temperature=0)
     elif BACKEND=="vllm":
@@ -85,6 +214,11 @@ async def lifespan(app: FastAPI):
     await app.state.redis.set("conversations", json.dumps(user_history_db))
     asyncio.create_task(cleanup_expired_sessions(app.state.redis))
     yield
+    app.state.ingestion_worker.cancel()
+    try:
+        await app.state.ingestion_worker
+    except asyncio.CancelledError:
+        pass
     await app.state.redis.aclose()
 
 app = FastAPI(
@@ -565,7 +699,104 @@ async def ingest_file(
         message=f"Ingestion unsuccesful: {str(e)} "
     return response, message
 '''
-    
+
+
+@app.post("/ingest_batch/{session_id_user}")
+async def ingest_batch(
+    session_id_user: str,
+    request: BatchIngestReq,
+    redis: Redis = Depends(lambda: app.state.redis),
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
+    if not current_user.admin:
+        raise HTTPException(status_code=403, detail="Insufficient permissions for batch ingestion")
+
+    if "$" not in session_id_user:
+        raise HTTPException(status_code=400, detail="Invalid session identifier")
+
+    _, user_name = session_id_user.split("$", maxsplit=1)
+    logger.info(
+        "Batch ingestion requested by admin %s for user %s into %s",
+        current_user.username,
+        user_name,
+        request.ingest_collection,
+    )
+
+    if not request.files:
+        raise HTTPException(status_code=400, detail="No files provided for ingestion")
+
+    await redis.hset(f"session:{request.conv_id}", "ingest_collection", request.ingest_collection)
+    conversations = await redis.get("conversations")
+    conversations_dict = json.loads(conversations)
+
+    if user_name not in conversations_dict or request.conv_id not in conversations_dict[user_name]:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    milvus_username = await redis.hget(f"session:{request.conv_id}", "user_id")
+    milvus_password_p2 = await redis.hget(f"session:{request.conv_id}", "password")
+    if not milvus_username or not milvus_password_p2:
+        logger.error("Invalid or expired session: %s", request.conv_id)
+        raise HTTPException(status_code=401, detail="Invalid or expired session")
+
+    milvus_username_str = milvus_username.decode('utf-8')
+    milvus_password_str = milvus_password_p2.decode('utf-8')
+    milvus_password = f"{milvus_username_str}:{milvus_password_str}"
+
+    client = MilvusClient(uri=MILVUS_URI, token=TOKEN)
+    try:
+        if MILVUS_ROOT_ROLE not in client.describe_user(user_name=milvus_username_str)["roles"]:
+            logger.error(
+                "Unauthorized ingestion attempted for session: %s and user: %s for collection: %s",
+                request.conv_id,
+                user_name,
+                request.ingest_collection,
+            )
+            raise HTTPException(status_code=401, detail="You are not authorized to ingest documents")
+    finally:
+        client.close()
+
+    queued_jobs: List[Dict[str, str]] = []
+    for file_path in request.files:
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail=f"File not found: {file_path}")
+
+        is_valid, validation_message = validator.validate_file(file_path)
+        if not is_valid:
+            raise HTTPException(status_code=400, detail=f"{validation_message}: {os.path.basename(file_path)}")
+
+        job_id = str(uuid4())
+        filename = os.path.basename(file_path)
+        job_payload: Dict[str, Any] = {
+            "job_id": job_id,
+            "file": file_path,
+            "filename": filename,
+            "conv_id": request.conv_id,
+            "user_name": user_name,
+            "ingest_collection": request.ingest_collection,
+            "milvus_password": milvus_password,
+        }
+        await enqueue_ingestion_job(app, job_payload)
+        queued_jobs.append({"job_id": job_id, "filename": filename, "status": INGEST_STATUS_QUEUED})
+
+    return {"queued_jobs": queued_jobs}
+
+
+@app.get("/ingest_batch/status")
+async def get_ingest_batch_status(
+    conv_id: Optional[str] = None,
+    current_user: AuthenticatedUser = Depends(get_current_user),
+):
+    if not current_user.admin:
+        raise HTTPException(status_code=403, detail="Insufficient permissions")
+
+    async with app.state.ingestion_status_lock:
+        status_snapshot = copy.deepcopy(app.state.ingestion_status)
+
+    if conv_id:
+        status_snapshot = [job for job in status_snapshot if job["conv_id"] == conv_id]
+
+    return status_snapshot
+
 @app.post("/create_collection/{collection_name}")
 async def create_collection(
     collection_name: str,

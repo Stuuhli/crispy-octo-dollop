@@ -1,3 +1,5 @@
+from typing import List
+
 from pydantic import BaseModel
 
 class session_start_req(BaseModel):
@@ -22,6 +24,13 @@ class Ingest_req(BaseModel):
     """ Message template for data sent to API """
     conv_id: str
     file: str
+    ingest_collection: str
+
+
+class BatchIngestReq(BaseModel):
+    """Batch ingestion request with multiple files"""
+    conv_id: str
+    files: List[str]
     ingest_collection: str
 
 class change_session(BaseModel):

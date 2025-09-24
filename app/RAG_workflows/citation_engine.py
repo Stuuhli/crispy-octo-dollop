@@ -21,7 +21,7 @@ from llama_index.core.schema import (
     TextNode,
 )
 from llama_index.core.response_synthesizers import (
-    ResponseMode,  # noqa: F811
+    ResponseMode,
 )
 from app.config import BACKEND_FASTAPI_LOG, response_artificial
 from app.prompt_config import CITATION_QA_TEMPLATE, CITATION_REFINE_TEMPLATE
