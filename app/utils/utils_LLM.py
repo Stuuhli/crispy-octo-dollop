@@ -8,8 +8,8 @@ from app.prompt_config import RETRIEVE_INSTRUCTION
 from datetime import datetime
 from llama_index.core import Response
 from pymilvus import AnnSearchRequest, RRFRanker , AsyncMilvusClient
-from pymilvus.model.reranker import BGERerankFunction # type: ignore
-from typing import List
+from pymilvus.model.reranker import BGERerankFunction  # type: ignore
+from typing import Dict, List, Tuple
 import ast
 import asyncio
 import copy
@@ -20,6 +20,35 @@ import re
 # logging config
 initialize_logging(BACKEND_FASTAPI_LOG)
 lock = asyncio.Lock()
+
+_RERANKER_CACHE: Dict[Tuple[str, str], BGERerankFunction] = {}
+_reranker_cache_lock = asyncio.Lock()
+
+async def _get_bge_reranker(model_name: str, device: str) -> BGERerankFunction:
+    """Load or reuse a cached BGE reranker."""
+    cache_key = (model_name, device)
+    cached = _RERANKER_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    async with _reranker_cache_lock:
+        cached = _RERANKER_CACHE.get(cache_key)
+        if cached is not None:
+            return cached
+
+        logger.info("Loading reranker %s on %s", model_name, device)
+        reranker = await asyncio.to_thread(
+            BGERerankFunction, model_name=model_name, device=device
+        )
+        _RERANKER_CACHE[cache_key] = reranker
+        return reranker
+
+
+async def _invalidate_bge_reranker(model_name: str, device: str) -> None:
+    """Remove a cached reranker if it becomes unusable."""
+    cache_key = (model_name, device)
+    async with _reranker_cache_lock:
+        _RERANKER_CACHE.pop(cache_key, None)
 
 async def thread_safe_deep_copy(lst):
     """Avoid corrupting data incase of multiconcurrency
@@ -90,13 +119,17 @@ async def rerank_documents(query, documents, model_name, device="cuda", top_k=4)
      # Initialize the reranker
     if BACKEND=="ollama":
         try:
-            bge_rf = BGERerankFunction(model_name=model_name, device=device)
-            results = await asyncio.to_thread(bge_rf, query=query, documents=texts, top_k=top_k)
-        except RuntimeError: 
-            # try with cpu
+            bge_rf = await _get_bge_reranker(model_name=model_name, device=device)
+            results = await asyncio.to_thread(
+                bge_rf, query=query, documents=texts, top_k=top_k
+            )
+        except RuntimeError:
             logger.warning("GPU not found, resorting to CPU")
-            bge_rf = BGERerankFunction(model_name=model_name, device="cpu")
-            results = await asyncio.to_thread(bge_rf, query=query, documents=texts, top_k=top_k)
+            await _invalidate_bge_reranker(model_name=model_name, device=device)
+            bge_rf = await _get_bge_reranker(model_name=model_name, device="cpu")
+            results = await asyncio.to_thread(
+                bge_rf, query=query, documents=texts, top_k=top_k
+            )
     elif BACKEND=="vllm":
         if "qwen3" in model_name.lower(): 
             query, texts= qwen_rerank_preprocess(query, texts)
