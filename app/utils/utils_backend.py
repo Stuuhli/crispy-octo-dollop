@@ -14,15 +14,17 @@ async def cleanup_expired_sessions(redis: Redis):
     """
     while True:
         try:
-            cursor = '0'
+            cursor = 0
             logger.info("Initiating expired session cleanup in Redis")
-            while cursor != 0:
-                cursor, keys = await redis.scan(cursor, match="session:*", count=100)
+            while True:
+                cursor, keys = await redis.scan(cursor=cursor, match="session:*", count=100)
                 for key in keys:
                     ttl = await redis.ttl(key)
-                    if ttl <= 0:
+                    if ttl is None or ttl <= 0:
                         await redis.delete(key)
-            
+                if cursor == 0:
+                    break
+
             # Wait for 3 hour before the next cleanup
             await asyncio.sleep(10800)
         except Exception as e:
